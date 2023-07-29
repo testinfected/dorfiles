@@ -129,10 +129,6 @@ return {
       vim.cmd([[colorscheme oxocarbon]])
       require "extensions.oxocarbon"
     end
-  -- Add in any other configuration; 
-  --   event = foo, 
-  --   config = bar
-  --   end,
   }
   -- }}}
 
