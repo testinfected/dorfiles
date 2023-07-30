@@ -19,3 +19,6 @@ neotree.setup({
   },
 })
 
+
+require "helpers/keyboard"
+nm('<leader>v', '<cmd>NeoTreeFocusToggle')                                        -- Toggle file explorer

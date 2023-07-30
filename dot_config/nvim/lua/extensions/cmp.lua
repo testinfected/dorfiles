@@ -155,13 +155,12 @@ cmp.setup({
       symbol_map = symbols.codicons,
 
       menu = ({
-        nvim_lsp = 'λ',
-        luasnip = '⋗',
+        nvim_lsp = '󰘧',
+        luasnip = '',
         buffer = '',
-        path = '󱞞',
-        nvim_lua = 'Π',
-        -- latex_symbols = "(Latex)",
-        -- path = "(Path)"
+        path = '',
+        nvim_lua = '',
+        latex_symbols = "",
       })
     })
   },

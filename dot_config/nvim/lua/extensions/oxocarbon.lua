@@ -15,6 +15,7 @@ local color = (((vim.o.background == "dark") and {base00 = base00, base01 = blen
 
 local highlight_color = vim.api.nvim_set_hl
 
+-- Swap fg and bg for kind icons in completion menu
 highlight_color(0, "CmpItemKindInterface", {fg = color.base08, bg = color.none})
 highlight_color(0, "CmpItemKindColor", {fg = color.base08, bg = color.none})
 highlight_color(0, "CmpItemKindTypeParameter", {fg = color.base08, bg = color.none})

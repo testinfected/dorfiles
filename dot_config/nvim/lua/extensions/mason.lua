@@ -4,37 +4,47 @@
   See: https://github.com/williamboman/mason.nvim
 ]]
 
+require("helpers/keyboard")
+
 local mason = require("mason")
 local mason_lspconfig = require("mason-lspconfig")
 local lspconfig = require("lspconfig")
 
-local default_keymap = function(event)
-  local fmt = function(cmd)
-    return function(str)
-      return cmd:format(str)
-    end
+local fmt = function(cmd)
+  return function(str)
+    return cmd:format(str)
   end
+end
+
+local bind_keys = function(event)
   local lsp = fmt('<cmd>lua vim.lsp.%s<cr>')
   local diagnostic = fmt('<cmd>lua vim.diagnostic.%s<cr>')
   local opts = {buffer = event.buf}
-  local bind = vim.keymap.set
 
-  bind('n', 'K', lsp 'buf.hover()', opts)
-  bind('n', 'gd', lsp 'buf.definition()', opts)
-  bind('n', 'gD', lsp 'buf.declaration()', opts)
-  bind('n', 'gi', lsp 'buf.implementation()', opts)
-  bind('n', 'go', lsp 'buf.type_definition()', opts)
-  bind('n', 'gr', lsp 'buf.references()', opts)
-  bind('n', 'gs', lsp 'buf.signature_help()', opts)
-  bind('n', '<F2>', lsp 'buf.rename()', opts)
-  bind({'n', 'x'}, '<F3>', lsp 'buf.format({async = true})', opts)
-  bind('n', '<F4>', lsp 'buf.code_action()', opts)
-  bind('x', '<F4>', lsp 'buf.range_code_action()', opts)
+  nm('K', lsp 'buf.hover()', opts)                                       -- Hover object
+  nm('ga', lsp 'buf.code_action()', opts)                                -- Code actions
+  xm('ga', lsp 'buf.code_action()', opts)                                -- Code actions
+  -- nm('gA', lsp 'buf.range_code_action()', opts)                             -- Code actions
+  -- xm('gA', lsp 'buf.range_code_action()', opts)                             -- Code actions
+  nm('gR', lsp 'buf.rename()', opts)                                     -- Rename an object
+  nm('gD', lsp 'buf.declaration()', opts)                                -- Go to declaration
+  nm('gi', lsp 'buf.implementation()', opts)
+  nm('go', lsp 'buf.type_definition()', opts)
+  nm('gh', lsp 'buf.references()', opts)
+  nm('gs', lsp 'buf.signature_help()', opts)
+  nm('gF', lsp 'buf.format({async = true})', opts)
 
-  bind('n', 'gl', diagnostic 'open_float()', opts)
-  bind('n', '[d', diagnostic 'goto_prev()', opts)
-  bind('n', ']d', diagnostic 'goto_next()', opts)
+  -- Diagnostic {{{
+  nm('gl', diagnostic 'open_float()')
+  nm('[d', diagnostic 'goto_prev()')
+  nm(']d', diagnostic 'goto_next()')
 end
+
+-- Keybindings when lsp server is active
+vim.api.nvim_create_autocmd('LspAttach', {
+  desc = 'LSP actions',
+  callback = bind_keys
+})
 
 local function set_sign_icons(opts)
   opts = opts or {}
@@ -56,12 +66,6 @@ local function set_sign_icons(opts)
   sign({name = 'hint', hl = 'DiagnosticSignHint'})
   sign({name = 'info', hl = 'DiagnosticSignInfo'})
 end
-
--- Keybindings when lsp server is active
-vim.api.nvim_create_autocmd('LspAttach', {
-  desc = 'LSP actions',
-  callback = default_keymap
-})
 
 set_sign_icons({
   error = '',
