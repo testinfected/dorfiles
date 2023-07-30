@@ -11,6 +11,7 @@ if wezterm.config_builder then
 end
 
 -- This is where you actually apply your config choices
+config.font = wezterm.font 'MesloLGS Nerd Font'
 
 -- For example, changing the color scheme:
 config.color_scheme = 'Oxocarbon Dark'
