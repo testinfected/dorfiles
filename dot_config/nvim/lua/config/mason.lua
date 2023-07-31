@@ -4,8 +4,6 @@
   See: https://github.com/williamboman/mason.nvim
 ]]
 
-require("helpers/keyboard")
-
 local mason = require("mason")
 local mason_lspconfig = require("mason-lspconfig")
 local lspconfig = require("lspconfig")
@@ -17,61 +15,46 @@ local fmt = function(cmd)
 end
 
 local bind_keys = function(event)
+  local keys = require("helpers.keys")
   local lsp = fmt('<cmd>lua vim.lsp.%s<cr>')
   local diagnostic = fmt('<cmd>lua vim.diagnostic.%s<cr>')
   local opts = {buffer = event.buf}
 
-  nm('K', lsp 'buf.hover()', opts)                                       -- Hover object
-  nm('ga', lsp 'buf.code_action()', opts)                                -- Code actions
-  xm('ga', lsp 'buf.code_action()', opts)                                -- Code actions
+  -- I would prefer
+    -- ga/gA: action/range action
+    -- gd: declaration
+    -- gs: symbol search
+    -- gS: symbol workspace search
+    -- gr: references
+    -- gi: implementation
+    -- go or gt: type definition (open type)
+    -- gp: signature_help (parameters)
+    -- gf: format
+    -- grn: rename
+
+  keys.nmap('K', lsp 'buf.hover()', opts)                                       -- Hover object
+  keys.nmap('ga', lsp 'buf.code_action()', opts)                                -- Code actions
+  keys.xmap('ga', lsp 'buf.code_action()', opts)                                -- Code actions
   -- nm('gA', lsp 'buf.range_code_action()', opts)                             -- Code actions
   -- xm('gA', lsp 'buf.range_code_action()', opts)                             -- Code actions
-  nm('gR', lsp 'buf.rename()', opts)                                     -- Rename an object
-  nm('gD', lsp 'buf.declaration()', opts)                                -- Go to declaration
-  nm('gi', lsp 'buf.implementation()', opts)
-  nm('go', lsp 'buf.type_definition()', opts)
-  nm('gh', lsp 'buf.references()', opts)
-  nm('gs', lsp 'buf.signature_help()', opts)
-  nm('gF', lsp 'buf.format({async = true})', opts)
+  keys.nmap('gR', lsp 'buf.rename()', opts)                                     -- Rename an object
+  keys.nmap('gD', lsp 'buf.declaration()', opts)                                -- Go to declaration
+  keys.nmap('gi', lsp 'buf.implementation()', opts)
+  keys.nmap('go', lsp 'buf.type_definition()', opts)
+  keys.nmap('gh', lsp 'buf.references()', opts)
+  keys.nmap('gs', lsp 'buf.signature_help()', opts)
+  keys.nmap('gF', lsp 'buf.format({async = true})', opts)
 
   -- Diagnostic {{{
-  nm('gl', diagnostic 'open_float()')
-  nm('[d', diagnostic 'goto_prev()')
-  nm(']d', diagnostic 'goto_next()')
+  keys.nmap('gl', diagnostic 'open_float()')
+  keys.nmap('[d', diagnostic 'goto_prev()')
+  keys.nmap(']d', diagnostic 'goto_next()')
 end
 
 -- Keybindings when lsp server is active
 vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'LSP actions',
   callback = bind_keys
-})
-
-local function set_sign_icons(opts)
-  opts = opts or {}
-
-  local sign = function(args)
-    if opts[args.name] == nil then
-      return
-    end
-
-    vim.fn.sign_define(args.hl, {
-      texthl = args.hl,
-      text = opts[args.name],
-      numhl = ''
-    })
-  end
-
-  sign({name = 'error', hl = 'DiagnosticSignError'})
-  sign({name = 'warn', hl = 'DiagnosticSignWarn'})
-  sign({name = 'hint', hl = 'DiagnosticSignHint'})
-  sign({name = 'info', hl = 'DiagnosticSignInfo'})
-end
-
-set_sign_icons({
-  error = '',
-  warn = '',
-  hint = '',
-  info = ''
 })
 
 mason.setup()

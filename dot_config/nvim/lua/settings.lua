@@ -5,51 +5,65 @@
 ]]
 
 -- Set associating between turned on plugins and filetype
-vim.cmd[[filetype plugin on]]
+vim.cmd [[filetype plugin on]]
 
 -- Disable comments on pressing Enter
-vim.cmd[[autocmd FileType * setlocal formatoptions-=cro]]
+vim.cmd [[autocmd FileType * setlocal formatoptions-=cro]]
 
--- Tabs {{{
-vim.opt.expandtab = true                -- Use spaces by default
-vim.opt.shiftwidth = 2                  -- Set amount of space characters, when we press "<" or ">"
-vim.opt.tabstop = 2                     -- 1 tab equal 2 spaces
-vim.opt.smartindent = true              -- Turn on smart indentation. See in the docs for more info
--- }}}
+local function set_options(opts)
+    for opt, val in pairs(opts) do
+        vim.o[opt] = val
+    end
+end
 
--- Useful options {{{
-vim.opt.number = true
-vim.opt.mouse = 'a'
--- }}}
+set_options {
+    -- Tabs {{{
+    expandtab = true, -- Use spaces by default
+    shiftwidth = 2, -- Set amount of space characters, when we press "<" or ">"
+    tabstop = 2, -- 1 tab equal 2 spaces
+    smartindent = true, -- Turn on smart indentation. See in the docs for more info
+    -- }}}
 
--- Clipboard {{{
-vim.opt.clipboard = 'unnamedplus' -- Use system clipboard
-vim.opt.fixeol = false -- Turn off appending new line in the end of a file
--- }}}
+    -- Useful options {{{
+    number = true,
+    mouse = 'a',
+    -- }}}
 
--- Folding {{{
-vim.opt.foldmethod = 'syntax'
--- }}}
+    -- Clipboard {{{
+    clipboard = 'unnamed,unnamedplus', -- Use system clipboard
+    fixeol = false, -- Turn off appending new line in the end of a file
+    -- }}}
 
--- Search {{{
-vim.opt.ignorecase = true               -- Ignore case if all characters in lower case
-vim.opt.joinspaces = false              -- Join multiple spaces in search
-vim.opt.smartcase = true                -- When there is a one capital letter search for exact match
-vim.opt.showmatch = true                -- Highlight search instances
--- }}}
+    -- Folding {{{
+    foldmethod = 'syntax',
+    -- }}}
 
--- Window {{{
-vim.opt.splitbelow = true               -- Put new windows below current
-vim.opt.splitright = true               -- Put new vertical splits to right
--- }}}
+    -- Search {{{
+    ignorecase = true, -- Ignore case if all characters in lower case
+    joinspaces = false, -- Join multiple spaces in search
+    smartcase = true, -- When there is a one capital letter search for exact match
+    showmatch = true, -- Highlight search instances
+    -- }}}
 
--- Wild Menu {{{
-vim.opt.wildmenu = true
-vim.opt.wildmode = "longest:full,full"
--- }}}
+    -- Window {{{
+    splitbelow = true, -- Put new windows below current
+    splitright = true, -- Put new vertical splits to right
+    -- }}}
+
+    -- Wild Menu {{{
+    wildmenu = true,
+    wildmode = "longest:full,full",
+    -- }}}
+}
 
 -- Default Plugins {{{
-local disabled_built_ins = {
+local function disable_built_ins(plugins)
+    for _, plugin in pairs(plugins) do
+        vim.g["loaded_" .. plugin] = 1
+    end
+end
+
+disable_built_ins {
     "netrw",
     "netrwPlugin",
     "netrwSettings",
@@ -69,10 +83,10 @@ local disabled_built_ins = {
     "spellfile_plugin",
     "matchit"
 }
-
-for _, plugin in pairs(disabled_built_ins) do
-    vim.g["loaded_" .. plugin] = 1
-end
 -- }}}
+
+-- Set theme
+local colorscheme = 'catppuccin'
+vim.cmd.colorscheme(colorscheme)
 
 -- vim: tabstop=2 shiftwidth=2 expandtab syntax=lua foldmethod=marker foldlevelstart=1

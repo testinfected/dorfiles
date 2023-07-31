@@ -19,6 +19,5 @@ neotree.setup({
   },
 })
 
-
-require "helpers/keyboard"
-nm('<leader>v', '<cmd>NeoTreeFocusToggle')                                        -- Toggle file explorer
+local keys = require "helpers.keys"
+keys.nmap('<leader>v', '<cmd>NeoTreeFocusToggle')                                        -- Toggle file explorer
