@@ -1,0 +1,89 @@
+# Configuration for Alacritty, the GPU enhanced terminal emulator.
+import:
+  - ~/.config/alacritty/themes/themes/catppuccin-mocha.yml
+env:
+  TERM: xterm-256color
+
+style: Beam
+dynamic_title: true
+unfocused_hollow: true
+hide_when_typing: true
+startup_mode: Maximized
+working_directory: None
+live_config_reload: true
+save_to_clipboard: false
+semantic_escape_chars: ",│`|:\"' ()[]{}<>\t"
+draw_bold_text_with_bright_colors: true
+persistent_logging: true
+
+window:
+  opacity: 0.90
+  padding:
+    x: 6
+    y: 6
+
+  dynamic_padding: false
+  title: Alacritty
+  class:
+    gtk_theme_variant: Dark
+    instance: Alacritty
+    general: Alacritty
+
+scrolling:
+  history: 5000
+
+font:
+  size: 14.0
+
+  normal:
+    family: MesloLGS Nerd Font Mono
+    style: Regular
+  bold:
+    family: MesloLGS Nerd Font Mono
+    style: Bold
+
+  italic:
+    family: MesloLGS Nerd Font Mono
+    style: Italic
+
+  bold_italic:
+    family: MesloLGS Nerd Font Mono
+    style: Bold Italic
+
+  offset:
+    x: 0
+    y: 1
+
+visual_bell:
+  animation: EaseOutExpo
+  duration: 1
+  color: '#ffffff'
+
+#shell:
+#  program: /bin/bash
+#  args:
+#    - --login
+
+#url:
+#launcher:
+#  program: xdg-open
+#  args: []
+
+key_bindings:
+  # (Windows, Linux, and BSD only)
+  - { key: V, mods: Control|Shift, action: Paste }
+  - { key: C, mods: Control|Shift, action: Copy }
+  - { key: Insert, mods: Shift, action: PasteSelection }
+  - { key: Key0, mods: Control, action: ResetFontSize }
+  - { key: Equals, mods: Control, action: IncreaseFontSize }
+  - { key: Plus, mods: Control, action: IncreaseFontSize }
+  - { key: Minus, mods: Control, action: DecreaseFontSize }
+  - { key: F11, mods: None, action: ToggleFullscreen }
+  - { key: Paste, mods: None, action: Paste }
+  - { key: Copy, mods: None, action: Copy }
+  - { key: L, mods: Control, action: ClearLogNotice }
+  - { key: L, mods: Control, chars: "\x0c" }
+  - { key: PageUp, mods: None, action: ScrollPageUp, mode: ~Alt }
+  - { key: PageDown, mods: None, action: ScrollPageDown, mode: ~Alt }
+  - { key: Home, mods: Shift, action: ScrollToTop, mode: ~Alt }
+  - { key: End, mods: Shift, action: ScrollToBottom, mode: ~Alt }
