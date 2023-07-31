@@ -14,7 +14,7 @@ end
 config.font = wezterm.font 'MesloLGS Nerd Font'
 
 -- For example, changing the color scheme:
-config.color_scheme = 'Oxocarbon Dark'
+config.color_scheme = "Catppuccin Mocha" -- or Macchiato, Frappe, Latte
 
 -- config.window_decorations = "RESIZE"
 
