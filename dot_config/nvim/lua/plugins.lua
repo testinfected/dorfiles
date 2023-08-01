@@ -111,7 +111,7 @@ lazy.setup {
         -- Trouble {{{
         {
             "folke/trouble.nvim",
-            lazy = true,
+            lazy = false,
             dependencies = "nvim-tree/nvim-web-devicons",
             config = function()
                 require "config.trouble"
@@ -123,14 +123,17 @@ lazy.setup {
         {
             "nvim-treesitter/nvim-treesitter",
             lazy = false,
+            dependencies = {
+                "nvim-treesitter/nvim-treesitter-textobjects"
+            },
             build = ":TSUpdate",
             event = { "BufReadPost", "BufNewFile" },
             config = function()
                 require "config.treesitter"
             end
         },
-        -- }}}
 
+        -- }}}
         -- Catpuccin theme {{{
         {
             "catppuccin/nvim",
@@ -139,6 +142,7 @@ lazy.setup {
             priority = 1000,
             config = function()
                 require("catppuccin").setup {
+                    flavor = "mocha",
                     term_colors = true,
                     --transparent_background = true,
                 }
@@ -149,7 +153,6 @@ lazy.setup {
 }
 
 -- Might as well set up an easy-access keybinding
-local keys = require("helpers.keys")
 keys.nmap("<leader>L", '<cmd>Lazy<CR>', "Show Lazy")
 
 -- vim:tabstop=2 shiftwidth=2 expandtab syntax=lua foldmethod=marker foldlevelstart=0 foldlevel=0

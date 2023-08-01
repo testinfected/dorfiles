@@ -7,7 +7,6 @@
 local trouble = require("trouble")
 trouble.setup()
 
-
 -- Keybindings
 local keys = require("helpers.keys")
 keys.nmap('<leader>x', '<cmd>TroubleToggle')                                         -- Show all problems in project (with help of LSP)
