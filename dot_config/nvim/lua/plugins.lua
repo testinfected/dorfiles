@@ -98,7 +98,7 @@ lazy.setup {
         },
         -- }}}
 
-        -- Git Signs{{{
+        -- Git Signs {{{
         {
             'lewis6991/gitsigns.nvim',
             lazy = false,
@@ -107,6 +107,15 @@ lazy.setup {
             end
         },
         -- }}}
+
+        -- Toggle Term {{{
+        {
+            'akinsho/toggleterm.nvim',
+            config = function()
+                require "config.toggleterm"
+            end
+        },
+        --}}}
 
         -- Trouble {{{
         {
@@ -175,6 +184,15 @@ lazy.setup {
                     flavor = "mocha",
                     term_colors = true,
                     --transparent_background = true,
+                    --native_lsp = {
+                    --    enabled = true,
+                    --    underlines = {
+                    --        errors = { "undercurl" },
+                    --        hints = { "undercurl" },
+                    --        warnings = { "undercurl" },
+                    --        information = { "undercurl" },
+                    --    },
+                    --},
                 }
             end
         }

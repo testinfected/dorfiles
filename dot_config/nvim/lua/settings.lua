@@ -45,6 +45,10 @@ set_options {
     showmatch = true, -- Highlight search instances
     -- }}}
 
+    -- Term {{{
+    termguicolors = true,
+    -- }}}
+
     -- Window {{{
     splitbelow = true, -- Put new windows below current
     splitright = true, -- Put new vertical splits to right
