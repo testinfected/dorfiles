@@ -201,6 +201,6 @@ lazy.setup {
 }
 
 -- Might as well set up an easy-access keybinding
-keys.nmap("<leader>L", '<cmd>Lazy<CR>', "Show Lazy")
+keys.nmap("<leader>L", '<cmd>Lazy<CR>', { desc = "Show Lazy" })
 
 -- vim:tabstop=2 shiftwidth=2 expandtab syntax=lua foldmethod=marker foldlevelstart=0 foldlevel=0
