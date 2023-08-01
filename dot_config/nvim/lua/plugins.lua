@@ -133,6 +133,36 @@ lazy.setup {
             end
         },
 
+        -- adds various text objects to give more targets to operate on
+        -- :help targets-settings
+        {
+            "wellle/targets.vim"
+        },
+
+        -- Adds a new operator to toggle comments in code
+        -- :help comment-nvim
+        {
+            "numToStr/Comment.nvim"
+        },
+        -- }}}
+
+        -- Text editing extras {{{
+        ---all about "surroundings": parentheses, brackets, quotes, XML tags, and more
+        {
+            "tpope/vim-surround"
+        },
+
+        -- complementary pairs of mappings
+        {
+            "tpope/vim-unimpaired"
+        },
+
+        -- Extand usage of repeat (.) to surround, unimpaired and treesitter
+        {
+            "tpope/vim-repeat"
+        },
+        -- }}}
+
         -- }}}
         -- Catpuccin theme {{{
         {
