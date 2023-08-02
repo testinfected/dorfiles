@@ -52,10 +52,15 @@ lazy.setup {
         {
             'nvim-telescope/telescope.nvim',
             tag = '0.1.2',
-            lazy = false,
             dependencies = {
                 "nvim-lua/plenary.nvim",
                 "ahmedkhalf/project.nvim",
+                "nvim-telescope/telescope-file-browser.nvim",
+                {
+                    -- much faster fzf than its lua counterpart
+                    'nvim-telescope/telescope-fzf-native.nvim',
+                    build = 'make',
+                },
             },
             config = function()
                 require "config.telescope"
@@ -66,6 +71,7 @@ lazy.setup {
         -- CMP {{{
         {
             'hrsh7th/nvim-cmp',
+            lazy = true,
             event = "InsertEnter",
             dependencies = {
                 'L3MON4D3/LuaSnip',
@@ -98,7 +104,6 @@ lazy.setup {
         -- Git Signs {{{
         {
             'lewis6991/gitsigns.nvim',
-            lazy = false,
             config = function()
                 require "config.gitsigns"
             end
@@ -117,7 +122,6 @@ lazy.setup {
         -- Trouble {{{
         {
             "folke/trouble.nvim",
-            lazy = false,
             dependencies = "nvim-tree/nvim-web-devicons",
             config = function()
                 require "config.trouble"
@@ -128,7 +132,7 @@ lazy.setup {
         -- TreeSitter {{{
         {
             "nvim-treesitter/nvim-treesitter",
-            lazy = false,
+            lazy = true,
             dependencies = {
                 "nvim-treesitter/nvim-treesitter-textobjects"
             },
@@ -172,8 +176,6 @@ lazy.setup {
         -- Which Key {{{
         {
             "folke/which-key.nvim",
-            lazy = false,
-            --event = "VeryLazy",
             init = function()
                 vim.o.timeout = true
                 vim.o.timeoutlen = 300
@@ -188,7 +190,6 @@ lazy.setup {
         {
             "catppuccin/nvim",
             name = "catppuccin",
-            lazy = false,
             priority = 1000,
             config = function()
                 require("catppuccin").setup {
@@ -204,6 +205,7 @@ lazy.setup {
                     --        information = { "undercurl" },
                     --    },
                     --},
+                    vim.cmd [[colorscheme catppuccin]]
                 }
             end
         }

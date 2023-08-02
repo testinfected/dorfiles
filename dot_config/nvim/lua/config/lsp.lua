@@ -16,17 +16,21 @@ vim.diagnostic.config {
 
 local register_key_bindings = function(event)
     local keys = require("helpers.keys")
+    local telescope = require("telescope.builtin")
 
     keys.register({
         ['K'] = { vim.lsp.buf.hover, "Quick documentation" },
         ['g'] = {
             name = "+goto",
-            d = { vim.lsp.buf.definition, "Definition" },
-            i = { vim.lsp.buf.implementation, "Implementation" },
-            o = { vim.lsp.buf.type_definition, "Type definition" },
-            r = { vim.lsp.buf.references, "References" },
+            --d = { vim.lsp.buf.definition, "Definition" },
+            d = { telescope.lsp_definitions, "Definition" },
+            --i = { vim.lsp.buf.implementation, "Implementation" },
+            i = { telescope.lsp_implementations, "Implementation" },
+            --o = { vim.lsp.buf.type_definition, "Type definition" },
+            o = { telescope.lsp_type_definitions, "Type definition" },
+            --r = { vim.lsp.buf.references, "References" },
+            r = { telescope.lsp_references, "References" },
             s = { vim.lsp.buf.signature_help, "Signature" },
-            D = { function() vim.diagnostic.open_float(nil, { scope = "buffer", border = "rounded" }) end, "Diagnostics" },
         },
         [']d'] = { function() vim.diagnostic.goto_next({ severity = nil}) end, "Next diagnostic" },
         ['[d'] = { function() vim.diagnostic.goto_prev({ severity = nil}) end, "Previous diagnostic" },
@@ -38,13 +42,22 @@ local register_key_bindings = function(event)
         -- Code actions
         ['<leader>c'] = {
             name = "+code",
-            r = { vim.lsp.buf.rename, "Rename..." },
             a = { vim.lsp.buf.code_action, "Code action" },
             f = { function() vim.lsp.buf.format({async = true}) end, "Format document" },
+            l = { vim.lsp.codelens.run, "CodeLens Action" },
+            q = { telescope.quickfix, "Quickfix" },
+            r = { vim.lsp.buf.rename, "Rename..." },
+            s = { telescope.lsp_document_symbols, "Document symbols" },
+            S = { telescope.lsp_dynamic_workspace_symbols, "Workspace Symbols" },
+            d = {
+                name = "+diagnostics",
+                l = { function() vim.diagnostic.open_float(nil, { scope = "buffer", border = "rounded" }) end, "Line diagnostics" },
+                f = { function() telescope.diagnostics { bufnr = 0 } end, "File diagnostics" },
+                w = { telescope.diagnostics, "Workspace diagnostics" }
+            },
         }
     }, { buffer = event.buf })
 
-    -- For some reason I can't make it work with keys.register
     keys.vmap('<leader>ca', vim.lsp.buf.code_action, { desc = "Range code action" })
     keys.vmap('<leader>cf', vim.lsp.buf.format, { desc = "Format selection" })
 end

@@ -12,7 +12,7 @@ wk.setup {
 
 wk.register({
   ["<leader>k"] = {
-      name = "+keymap",
+      name = "+keymaps",
       s = { function() vim.cmd "WhichKey" end, "Show", },
       l = { function() local input = vim.fn.input "WhichKey: " vim.cmd("WhichKey " .. input) end, "Lookup..." }
   },
