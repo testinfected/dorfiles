@@ -4,10 +4,6 @@
   Info: Use <zo> and <zc> to open and close foldings
 ]]
 
--- We have to set the leader key first
-local keys = require("helpers.keys")
-keys.set_leader ' ' -- Use Space, like key for alternative hotkeys
-
 -- Bootstrap lazy.nvim
 local lazy = require("helpers.lazy").bootstrap()
 
@@ -23,7 +19,7 @@ lazy.setup {
         },
         -- }}}
 
-        -- Mason {{{
+        -- Mason + LSP {{{
         {
             "williamboman/mason.nvim",
             build = ":MasonUpdate",
@@ -33,6 +29,7 @@ lazy.setup {
             },
             config = function()
                 require "config.mason"
+                require "config.lsp"
             end
         },
         -- }}}
@@ -170,9 +167,23 @@ lazy.setup {
         {
             "tpope/vim-repeat"
         },
+        -- }}},
+
+        -- Which Key {{{
+        {
+            "folke/which-key.nvim",
+            lazy = false,
+            --event = "VeryLazy",
+            init = function()
+                vim.o.timeout = true
+                vim.o.timeoutlen = 300
+            end,
+            config = function()
+                require "config.which-key"
+            end
+        },
         -- }}}
 
-        -- }}}
         -- Catpuccin theme {{{
         {
             "catppuccin/nvim",
@@ -201,6 +212,12 @@ lazy.setup {
 }
 
 -- Might as well set up an easy-access keybinding
-keys.nmap("<leader>L", '<cmd>Lazy<CR>', { desc = "Show Lazy" })
+local keys = require("helpers.keys")
+keys.register {
+    ["<leader>p"] = {
+        name = "+plugins",
+        s = { "<cmd>Lazy<CR>", "Show" }
+    }
+}
 
 -- vim:tabstop=2 shiftwidth=2 expandtab syntax=lua foldmethod=marker foldlevelstart=0 foldlevel=0

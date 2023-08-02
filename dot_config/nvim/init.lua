@@ -6,11 +6,9 @@
 -- Fennel code goes to fnl/
 require "hotpot"
 
--- Bootstrap plugin manager and load plugins
-require "plugins"
-
-require "keybindings"
-
 require "settings"
+require "plugins"
+require "keybindings"
+require "theme"
 
 -- vim:tabstop=2 shiftwidth=2 expandtab syntax=lua foldmethod=marker foldlevelstart=0 foldlevel=0

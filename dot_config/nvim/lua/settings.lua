@@ -10,13 +10,17 @@ vim.cmd [[filetype plugin on]]
 -- Disable comments on pressing Enter
 vim.cmd [[autocmd FileType * setlocal formatoptions-=cro]]
 
-local function set_options(opts)
+vim.g.mapleader = " "
+vim.g.maplocalleader = ","
+vim.keymap.set({ 'n', 'v' }, '<leader>', "<Nop>", { silent = true, remap = false })
+
+local function vim_options(opts)
     for opt, val in pairs(opts) do
         vim.o[opt] = val
     end
 end
 
-set_options {
+vim_options {
     -- Tabs {{{
     expandtab = true, -- Use spaces by default
     shiftwidth = 2, -- Set amount of space characters, when we press "<" or ">"
@@ -88,9 +92,5 @@ disable_built_ins {
     "matchit"
 }
 -- }}}
-
--- Set theme
-local colorscheme = 'catppuccin'
-vim.cmd.colorscheme(colorscheme)
 
 -- vim: tabstop=2 shiftwidth=2 expandtab syntax=lua foldmethod=marker foldlevelstart=1

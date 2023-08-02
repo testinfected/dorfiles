@@ -12,9 +12,13 @@ toggleterm.setup {
 local Terminal  = require('toggleterm.terminal').Terminal
 local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
 
-function _lazygit_toggle()
+local function toggle_lazygit()
     lazygit:toggle()
 end
 
 local keys = require("helpers.keys")
-keys.nmap("<leader>g", "<cmd>lua _lazygit_toggle()<CR>")
+keys.register({
+    ['<leader>g'] = {
+        g = { toggle_lazygit, "Lazygit" }
+    }
+})

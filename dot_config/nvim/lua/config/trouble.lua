@@ -9,8 +9,8 @@ trouble.setup()
 
 -- Keybindings
 local keys = require("helpers.keys")
-keys.nmap('<leader>x', '<cmd>TroubleToggle')                                         -- Show all problems in project (with help of LSP)
-keys.nmap('gr', '<cmd>Trouble lsp_references')                                       -- Show use of object in project
+--keys.nmap('<leader>x', '<cmd>TroubleToggle')                                         -- Show all problems in project (with help of LSP)
+--keys.nmap('gr', '<cmd>Trouble lsp_references')                                       -- Show use of object in project
 
 -- Signs
 local function set_sign_icons(opts)

@@ -20,4 +20,6 @@ neotree.setup({
 })
 
 local keys = require "helpers.keys"
-keys.nmap('<leader>v', '<cmd>NeoTreeFocusToggle')                                        -- Toggle file explorer
+keys.register({
+  ['<leader>e'] = { '<cmd>Neotree toggle<CR>', "File explorer" }
+})
