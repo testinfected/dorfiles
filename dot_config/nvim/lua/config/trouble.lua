@@ -7,11 +7,6 @@
 local trouble = require("trouble")
 trouble.setup()
 
--- Keybindings
-local keys = require("helpers.keys")
---keys.nmap('<leader>x', '<cmd>TroubleToggle')                                         -- Show all problems in project (with help of LSP)
---keys.nmap('gr', '<cmd>Trouble lsp_references')                                       -- Show use of object in project
-
 -- Signs
 local function set_sign_icons(opts)
     opts = opts or {}
@@ -40,3 +35,28 @@ set_sign_icons({
     hint = '',
     info = ''
 })
+
+-- Keybindings
+local keys = require("helpers.keys")
+
+keys.register {
+    ['<leader>x'] = {
+        "+trouble",
+        x = { trouble.open, "Open" },
+        w = { function() trouble.open("workspace_diagnostics") end, "Workspace diagnostics" },
+        d = { function() trouble.open("document_diagnostic") end, "Document diagnostics" },
+        q = { function() trouble.open("quickfix") end, "Quickfix"},
+        l = { function() trouble.open("loclist") end, "Locations" },
+        r = { function() trouble.open("lsp_references") end, "References" }
+    }
+}
+
+local telescope = require("trouble.providers.telescope")
+require("telescope").setup {
+    defaults = {
+        mappings = {
+            i = { ["<c-t>"] = telescope.open_with_trouble },
+            n = { ["<c-t>"] = telescope.open_with_trouble },
+        },
+    },
+}
