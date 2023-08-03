@@ -26,10 +26,18 @@ lazy.setup {
             dependencies = {
                 "williamboman/mason-lspconfig.nvim",
                 "neovim/nvim-lspconfig",
+                {
+                    "jose-elias-alvarez/null-ls.nvim",
+                    dependencies = {
+                        "nvim-lua/plenary.nvim",
+                    },
+                    event = 'VeryLazy',
+                }
             },
             config = function()
                 require "config.mason"
                 require "config.lsp"
+                require "config.null-ls"
             end
         },
         -- }}}
@@ -170,6 +178,15 @@ lazy.setup {
         -- Extand usage of repeat (.) to surround, unimpaired and treesitter
         {
             "tpope/vim-repeat"
+        },
+
+        -- Buffer Bye, close buffers but not windows
+        {
+            "moll/vim-bbye",
+            config = function()
+                local keys = require("helpers.keys")
+                keys.nmap('<leader>q', '<cmd>Bdelete<CR>')
+            end
         },
         -- }}},
 
