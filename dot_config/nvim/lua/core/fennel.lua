@@ -1,7 +1,8 @@
--- This hotpot.lua file will clone hotpot (the fennel compiler) into the plugins directory
--- if it missing
-
--- Fennel code goes to fnl/
+--[[
+  File: fennel.lua
+  Description: Clones hotpot (the fennel compiler) into the plugins directory if it missing
+  See: https://github.com/rktjmp/hotpot.nvim
+]]
 
 local hotpot_path = vim.fn.stdpath('data') .. '/site/pack/paqs/start/hotpot.nvim'
 

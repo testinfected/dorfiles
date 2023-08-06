@@ -1,4 +1,9 @@
-local keys = require "helpers.keys"
+--[[
+  File: keybindings.lua
+  Description: Defines custom keybindings
+]]
+
+local keys = require "core.utils".keys
 
 keys.map({ "i", "n" }, "<esc>", "<cmd>noh<cr><esc>", { desc = "Escape and clear search highlighting" })
 

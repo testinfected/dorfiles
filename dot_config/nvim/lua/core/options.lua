@@ -1,5 +1,5 @@
 --[[
-  File: settings.lua
+  File: options.lua
   Description: Base settings for neovim
   Info: Use <zo> and <zc> to open and close foldings
 ]]
@@ -63,34 +63,5 @@ vim_options {
     wildmode = "longest:full,full",
     -- }}}
 }
-
--- Default Plugins {{{
-local function disable_built_ins(plugins)
-    for _, plugin in pairs(plugins) do
-        vim.g["loaded_" .. plugin] = 1
-    end
-end
-
-disable_built_ins {
-    "netrw",
-    "netrwPlugin",
-    "netrwSettings",
-    "netrwFileHandlers",
-    "gzip",
-    "zip",
-    "zipPlugin",
-    "tar",
-    "tarPlugin",
-    "getscript",
-    "getscriptPlugin",
-    "vimball",
-    "vimballPlugin",
-    "2html_plugin",
-    "logipat",
-    "rrhelper",
-    "spellfile_plugin",
-    "matchit"
-}
--- }}}
 
 -- vim: tabstop=2 shiftwidth=2 expandtab syntax=lua foldmethod=marker foldlevelstart=1

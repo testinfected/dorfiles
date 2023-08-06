@@ -1,6 +1,9 @@
-local wk = require("which-key")
+--[[
+  File: utils.lua
+  Description: Utility functions, e.g. to help with keybindings
+]]
 
-local Keys = {}
+local wk = require "which-key"
 
 local function merge(opts, overrides)
     for k, v in pairs(overrides) do
@@ -9,47 +12,51 @@ local function merge(opts, overrides)
     return opts
 end
 
-Keys.register = function(spec)
+local Keys = {}
+
+function Keys.register(spec)
     wk.register(spec)
 end
 
-Keys.map = function(modes, key, cmd, opts)
+function Keys.map(modes, key, cmd, opts)
     vim.keymap.set(modes, key, cmd, merge({ noremap = true }, opts or {}))
 end
 
 -- Normal mode keybinding setter
-Keys.nmap = function(key, cmd, opts)
+function Keys.nmap(key, cmd, opts)
     Keys.map('n', key, cmd, opts or {})
 end
 
 -- Insert mode keybinding setter
-Keys.imap = function(key, cmd, opts)
+function Keys.imap(key, cmd, opts)
     Keys.map('i', key, cmd, opts or {})
 end
 
--- Operator mode keybinding setter
-Keys.omap = function(key, cmd, opts)
+-- Operator pending mode keybinding setter
+function Keys.omap(key, cmd, opts)
     Keys.map('o', key, cmd, opts or {})
 end
 
 -- Visual and select mode keybinding setter
-Keys.vmap = function(key, cmd, opts)
+function Keys.vmap(key, cmd, opts)
     Keys.map('v', key, cmd, opts or {})
 end
 
 -- Visual mode only keybinding setter
-Keys.xmap = function(key, cmd, opts)
+function Keys.xmap(key, cmd, opts)
     Keys.map('x', key, cmd, opts or {})
 end
 
 -- Select mode only keybinding setter
-Keys.smap = function(key, cmd, opts)
+function Keys.smap(key, cmd, opts)
     Keys.map('s', key, cmd, opts or {})
 end
 
 -- Terminal mode keybinding setter
-Keys.tmap = function(key, cmd, opts)
+function Keys.tmap(key, cmd, opts)
     Keys.map('t', key, cmd, opts or {})
 end
 
-return Keys
+return {
+    keys = Keys
+}

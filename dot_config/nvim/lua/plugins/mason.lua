@@ -1,15 +1,20 @@
 --[[
   File: mason.lua
-  Description: Mason plugin configuration (with lspconfig)
+  Description: Portable package manager to install and manage LSP servers, DAP servers, linters, and formatters.
   See: https://github.com/williamboman/mason.nvim
 ]]
 
-local mason = require("mason")
-mason.setup()
+local M = {
+  "williamboman/mason.nvim",
+  build = ":MasonUpdate",
+  dependencies = {
+    "williamboman/mason-lspconfig.nvim",
+  },
+  -- Load Mason immediately, it needs to be ready before LSP
+  lazy = false,
+}
 
-local mason_lspconfig = require("mason-lspconfig")
-mason_lspconfig.setup({
-  ensure_installed = {
+local servers = {
     "lua_ls",                 -- LSP for Lua language
     "tsserver",               -- LSP for Typescript and Javascript
     "emmet_ls",               -- LSP for Emmet (Vue, HTML, CSS)
@@ -20,7 +25,7 @@ mason_lspconfig.setup({
     "bashls",                 -- LSP for Bash
     "dagger",                 -- LSP for CUE
     "dockerls",               -- LSP for Docker (exl. Docker Compose)
-    --- "fennel_language_server", -- LSP for Fennel
+    --"fennel_language_server", -- LSP for Fennel
     "gradle_ls",              -- LSP for Gradle
     "html"    ,               -- LSP for HTML
     "marksman",               -- LSP for Markdown
@@ -30,17 +35,28 @@ mason_lspconfig.setup({
     "taplo",                  -- LSP for TOML
     "lemminx",                -- LSP for XML
     "yamlls",                 -- LSP for YAML
+}
+
+function M.config()
+  require "mason".setup()
+
+  local mason_lspconfig = require "mason-lspconfig"
+
+  mason_lspconfig.setup {
+    ensure_installed = servers
   }
-});
 
--- Setup every needed language server in lspconfig
-local lspconfig = require("lspconfig")
-local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+  -- Setup every needed language server in lspconfig
+  local lspconfig = require "lspconfig"
+  local lsp_capabilities = require "cmp_nvim_lsp".default_capabilities()
 
-mason_lspconfig.setup_handlers({
-  function(server_name)
-    lspconfig[server_name].setup({
-      capabilities = lsp_capabilities,
-    })
-  end,
-})
+  mason_lspconfig.setup_handlers({
+    function(server_name)
+      lspconfig[server_name].setup({
+        capabilities = lsp_capabilities,
+      })
+    end,
+  })
+end
+
+return M
