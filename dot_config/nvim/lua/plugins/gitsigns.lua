@@ -31,51 +31,35 @@ local function register_keybindings(buffer)
     end
 
     local keys = require "core.utils".keys
-
-    -- Navigation
-    keys.register({
-        [']h'] = { next_hunk, "Next hunk" },
-        ['[h'] = { prev_hunk, "Previous hunk" },
-    }, { expr = true, buffer = buffer })
-
     local git = package.loaded.gitsigns
     local telescope = require "telescope.builtin"
 
-    -- Actions
-    keys.register {
-        ['<leader>g'] = {
-            name = "+git",
-            s = { git.stage_hunk, "Stage hunk" },
-            r = { git.reset_hunk, "Reset hunk" },
-            u = { git.undo_stage_hunk, "Undo stage hunk" },
-            S = { git.stage_buffer, "Stage buffer" },
-            R = { git.reset_buffer, "Reset buffer" },
-            p = { git.preview_hunk, "Preview hunk" },
-            d = { git.diffthis, "View diff" },
-            D = { function()
-                git.diffthis('~')
-            end, "View diff to head" },
-            b = { git.blame_line, "Blame" },
-            B = { function()
-                git.blame_line { full = true }
-            end, "Full blame" },
-            h = { telescope.git_bcommits, "File history" },
-            g = {
-                name = "+show",
-                c = { telescope.git_commits, "Commits" },
-                b = { telescope.git_branches, "Branches" },
-                m = { telescope.git_status, "Changes" },
-                s = { telescope.git_stash, "Stash" },
-            },
-            t = {
-                name = "+toggle",
-                b = { git.toggle_current_line_blame, "Current line blame" },
-                d = { git.toggle_deleted, "Deleted" },
-            },
-        },
-    }
+    -- Navigation
+    keys.nmap(']h', next_hunk, { desc = "Next hunk", expr = true, buffer = buffer })
+    keys.nmap('[h', prev_hunk, { desc = "Previous hunk", expr = true, buffer = buffer })
 
-    -- Text object
+    local prefix = '<leader>g'
+    -- +git actions
+    keys.nmap(prefix .. 's', git.stage_hunk, { desc = "Stage hunk" })
+    keys.nmap(prefix .. 'r', git.reset_hunk, { desc = "Reset hunk" })
+    keys.nmap(prefix .. 'u', git.undo_stage_hunk, { desc ="Undo stage hunk" })
+    keys.nmap(prefix .. 'S', git.stage_buffer, { desc = "Stage buffer" })
+    keys.nmap(prefix .. 'R', git.reset_buffer, { desc = "Reset buffer" })
+    keys.nmap(prefix .. 'p', git.preview_hunk, { desc = "Preview hunk" })
+    keys.nmap(prefix .. 'd', git.diffthis, { desc = "View diff" })
+    keys.nmap(prefix .. 'd', function() git.diffthis('~') end, { desc = "View diff to head" })
+    keys.nmap(prefix .. 'b', git.blame_line, { desc = "Blame" })
+    keys.nmap(prefix .. 'B', function() git.blame_line { full = true } end, { desc = "Full blame" })
+    keys.nmap(prefix .. 'h', telescope.git_bcommits, { desc = "File history" })
+    -- +show
+    keys.nmap(prefix .. 'gc', telescope.git_commits, { desc = "Commits" })
+    keys.nmap(prefix .. 'gb', telescope.git_branches, { desc = "Branches" })
+    keys.nmap(prefix .. 'gm', telescope.git_status, { desc = "Changes" })
+    keys.nmap(prefix .. 'gs', telescope.git_stash, { desc = "Stash" })
+    -- +toggle
+    keys.nmap(prefix .. 'tb', git.toggle_current_line_blame, { desc = "Current line blame" })
+    keys.nmap(prefix .. 'td', git.toggle_deleted, { desc = "Deleted" })
+    -- Text objects
     keys.map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = "Select hunk" })
 end
 

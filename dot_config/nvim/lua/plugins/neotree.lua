@@ -18,9 +18,7 @@ local M = {
 
 local function register_keybindings()
   local keys = require "core.utils".keys
-  keys.register {
-    ['<leader>e'] = { '<cmd>Neotree toggle<CR>', "File explorer" }
-  }
+  keys.nmap('<leader>e', '<cmd>Neotree toggle<CR>', { desc = "File explorer" })
 end
 
 function M.config()

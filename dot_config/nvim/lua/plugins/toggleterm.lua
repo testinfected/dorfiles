@@ -11,15 +11,11 @@ local M = {
 }
 
 local function register_keybindings()
+    local keys = require "core.utils".keys
     local Terminal  = require('toggleterm.terminal').Terminal
     local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
 
-    local keys = require "core.utils".keys
-    keys.register({
-        ['<leader>g'] = {
-            c = { function() lazygit:toggle() end, "Commit" }
-        }
-    })
+    keys.nmap('<leader>gc', function() lazygit:toggle() end, { desc = "Commit" })
 end
 
 function M.config()

@@ -3,8 +3,6 @@
   Description: Utility functions, e.g. to help with keybindings
 ]]
 
-local wk = require "which-key"
-
 local function merge(opts, overrides)
     for k, v in pairs(overrides) do
         opts[k] = v
@@ -13,10 +11,6 @@ local function merge(opts, overrides)
 end
 
 local Keys = {}
-
-function Keys.register(spec)
-    wk.register(spec)
-end
 
 function Keys.map(modes, key, cmd, opts)
     vim.keymap.set(modes, key, cmd, merge({ noremap = true }, opts or {}))

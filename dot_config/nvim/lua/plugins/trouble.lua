@@ -34,20 +34,16 @@ local function set_sign_icons(opts)
 end
 
 local function register_keybindings()
-    local trouble = require "trouble"
     local keys = require "core.utils".keys
+    local trouble = require "trouble"
 
-    keys.register {
-        ['<leader>x'] = {
-            "+trouble",
-            x = { trouble.open, "Open" },
-            w = { function() trouble.open("workspace_diagnostics") end, "Workspace diagnostics" },
-            d = { function() trouble.open("document_diagnostic") end, "Document diagnostics" },
-            q = { function() trouble.open("quickfix") end, "Quickfix"},
-            l = { function() trouble.open("loclist") end, "Locations" },
-            r = { function() trouble.open("lsp_references") end, "References" }
-        }
-    }
+    local prefix = '<leader>x'
+    keys.nmap(prefix .. 'x', trouble.open, { desc = "Open" })
+    keys.nmap(prefix .. 'w', function() trouble.open("workspace_diagnostics") end, { desc = "Workspace diagnostics" })
+    keys.nmap(prefix .. 'd', function() trouble.open("document_diagnostic") end, { desc = "Document diagnostics" })
+    keys.nmap(prefix .. 'q', function() trouble.open("quickfix") end, { desc = "Quickfix"})
+    keys.nmap(prefix .. 'l', function() trouble.open("loclist") end, { desc = "Locations" })
+    keys.nmap(prefix .. 'r', function() trouble.open("lsp_references") end, { desc = "References"} )
 end
 
 function M.config()

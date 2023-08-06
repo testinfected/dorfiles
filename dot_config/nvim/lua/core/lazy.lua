@@ -41,7 +41,7 @@ local disabled_builtins = {
     'rrhelper',
     'spellfile_plugin',
     "matchparen", -- Plugin for showing matching parens
-    "matchit", -- What is it?
+    "matchit", -- we'll get it ourselves
     "tohtml", -- Converting a syntax highlighted file to HTML
     "tutor", -- Teaching
 }
@@ -75,11 +75,6 @@ lazy.setup("plugins", {
 
 -- Might as well set up an easy-access keybinding
 local keys = require "core.utils".keys
-keys.register {
-    ["<leader>p"] = {
-        name = "+plugins",
-        s = { "<cmd>Lazy<CR>", "Show" }
-    }
-}
+keys.nmap('<leader>p', "<cmd>Lazy<CR>", { desc = "Show" })
 
 -- vim:tabstop=2 shiftwidth=2 expandtab syntax=lua foldmethod=marker foldlevelstart=0 foldlevel=0

@@ -34,12 +34,68 @@ function M.config()
     }
 
     wk.register {
-        ["<leader>k"] = {
-            name = "+keymaps",
-            s = { function() vim.cmd "WhichKey" end, "Show", },
-            l = { function()
-                local input = vim.fn.input "WhichKey: " vim.cmd("WhichKey " .. input) end, "Lookup..." }
+        ['='] = {
+            name = "+Unimpaired"
         },
+        ['['] = {
+            name = "+Navigate (backward)"
+        },
+        [']'] = {
+            name = "+Navigate (forward)"
+        },
+        ['g'] = {
+            name = "+Goto",
+        },
+        z = {
+            name = "+Fold",
+        },
+        ['<c-w>'] = {
+            name = "+Window",
+        },
+        ['<leader>'] = {
+            name = "+User",
+            b = {
+                name = "+Buffer",
+            },
+            c = {
+                name = "+Code",
+                d = {
+                    name = "+Diagnostics",
+                },
+            },
+            f = {
+                name = "+File",
+            },
+            g = {
+                name = "+Git",
+                g = {
+                    name = "+Show",
+                },
+                t = {
+                    name = "+Toggle",
+                },
+            },
+            h = {
+                name = "+Help",
+            },
+            k = {
+                name = "+Keymaps",
+                s = { function() vim.cmd "WhichKey" end, "Show", },
+                l = { function() local input = vim.fn.input "WhichKey: " vim.cmd("WhichKey " .. input) end, "Lookup..." }
+            },
+            p = {
+                name = "+Plugins",
+            },
+            s = {
+                name = "+Search",
+            },
+            t = {
+                name = "+Tweak",
+            },
+            x = {
+                name = "+Trouble",
+            },
+        }
     }
 end
 

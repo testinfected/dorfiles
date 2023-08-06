@@ -11,7 +11,7 @@ local M = {
 
 function M.config()
     local keys = require "core.utils".keys
-    keys.nmap('<leader>q', '<cmd>Bdelete<CR>')
+    keys.nmap('<leader>q', '<cmd>Bdelete<CR>', { desc = "Delete buffer"})
 end
 
 return M

@@ -47,51 +47,42 @@ local function register_keybindings()
     local builtin = require "telescope.builtin"
     local extensions = require "telescope".extensions
 
-    keys.register {
-        ['<leader>'] = {
-            name = "+prefix",
-            [' '] = { builtin.find_files, "Find files" },
-            ['.'] = { function() extensions.file_browser.file_browser({ path="%:p:h", select_buffer=true}) end, "Browse project" },
-            [','] = { builtin.buffers, "Opened buffers" },
-            ['/'] = { builtin.current_buffer_fuzzy_find, "Search current buffer" },
-            ["'"] = { builtin.live_grep, "Search everywhere" },
-            [';'] = { builtin.command_history, "Search recent commands" },
-            ['*'] = { builtin.grep_string, "Find word under cursor" },
-            b = {
-                name = "+buffer",
-                s = { function() builtin.buffers({show_all_buffers=true}) end, "Select" },
-                f = { builtin.current_buffer_fuzzy_find, "Find text" },
-            },
-            f = {
-                name = "+file",
-                o = {  builtin.git_files, "Open from project" },
-                f = {  builtin.find_files, "Find" },
-                r = {  builtin.oldfiles, "Recently opened" },
-            },
-            h = {
-                name = "+help",
-                c = { builtin.commands, "Show available commands" },
-                k = { builtin.keymaps, "Show keymaps" },
-                o = { builtin.vim_options, "Show options" },
-                h = { builtin.help_tags, "Show help tags" },
-                H = { builtin.highlights, "Show highlight groups" },
-            },
-            s = {
-                name = "+search",
-                b = { builtin.current_buffer_fuzzy_find, "Current buffer" },
-                t = { builtin.live_grep, "Everywhere" },
-                c = { builtin.command_history, "Commands history" },
-                m = { builtin.marks, "Marks" },
-                r = { builtin.resume, "Resume previous search" },
-                w = { builtin.grep_string, "Word under cursor" },
-            },
-            t = {
-                name = "+tweak",
-                C = { function() builtin.colorscheme({enable_preview = true}) end, "Switch colorscheme" },
-            },
-            v = {  builtin.registers, "Registers" },
-        },
-    }
+    keys.nmap('<leader> ', builtin.find_files, { desc = "Find files" })
+    keys.nmap('<leader>.', function() extensions.file_browser.file_browser({ path="%:p:h", select_buffer=true}) end, { desc = "Browse project" })
+    keys.nmap('<leader>,', builtin.buffers, { desc = "Opened buffers" })
+    keys.nmap('<leader>/', builtin.current_buffer_fuzzy_find, { desc = "Search current buffer" })
+    keys.nmap("<leader>'", builtin.live_grep, { desc = "Search everywhere" })
+    keys.nmap('<leader>;', builtin.command_history, { desc = "Search recent commands" })
+    keys.nmap('<leader>*', builtin.grep_string, { desc = "Find word under cursor" })
+
+    -- +buffers
+    keys.nmap('<leader>bs', function() builtin.buffers({show_all_buffers=true}) end, { desc = "Select" })
+    keys.nmap('<leader>bf', builtin.current_buffer_fuzzy_find, { desc = "Find text" })
+
+    -- "+file",
+    keys.nmap('<leader>fo',  builtin.git_files, { desc = "Open from project" })
+    keys.nmap('<leader>ff',  builtin.find_files, { desc = "Find" })
+    keys.nmap('<leader>fr',  builtin.oldfiles, { desc = "Recently opened" })
+
+    -- "+help",
+    keys.nmap('<leader>hc', builtin.commands, { desc = "Show available commands" })
+    keys.nmap('<leader>hk', builtin.keymaps, { desc = "Show keymaps" })
+    keys.nmap('<leader>ho', builtin.vim_options, { desc = "Show options" })
+    keys.nmap('<leader>hh', builtin.help_tags, { desc = "Show help tags" })
+    keys.nmap('<leader>hH', builtin.highlights, { desc = "Show highlight groups" })
+
+    -- "+search",
+    keys.nmap('<leader>sb', builtin.current_buffer_fuzzy_find, { desc = "Current buffer" })
+    keys.nmap('<leader>st', builtin.live_grep, { desc = "Everywhere" })
+    keys.nmap('<leader>sc', builtin.command_history, { desc = "Commands history" })
+    keys.nmap('<leader>sm', builtin.marks, { desc = "Marks" })
+    keys.nmap('<leader>sr', builtin.resume, { desc = "Resume previous search" })
+    keys.nmap('<leader>stw', builtin.grep_string, { desc = "Word under cursor" })
+
+    -- "+tweak",
+    keys.nmap('<leader>tC', function() builtin.colorscheme({enable_preview = true}) end, { desc = "Switch colorscheme" })
+
+    keys.nmap('<leader>v', builtin.registers, { desc = "Registers" })
 end
 
 function M.config()
