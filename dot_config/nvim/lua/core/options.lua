@@ -29,6 +29,7 @@ vim_options {
     -- }}}
 
     -- Useful options {{{
+    showmode = false, -- we don't need to see things like -- INSERT -- anymore
     number = true,
     mouse = 'a',
     -- }}}
@@ -63,5 +64,8 @@ vim_options {
     wildmode = "longest:full,full",
     -- }}}
 }
+
+vim.g.VM_set_statusline = 0 -- disable VM's statusline updates to prevent clobbering
+vim.g.VM_silent_exit = 1    -- because the status line already tells me the mode
 
 -- vim: tabstop=2 shiftwidth=2 expandtab syntax=lua foldmethod=marker foldlevelstart=1
