@@ -75,6 +75,6 @@ lazy.setup("plugins", {
 
 -- Might as well set up an easy-access keybinding
 local keys = require "core.utils".keys
-keys.nmap('<leader>p', "<cmd>Lazy<CR>", { desc = "Show" })
+keys.nmap('<leader>l', "<cmd>Lazy<CR>", { desc = "Plugin Manager" })
 
 -- vim:tabstop=2 shiftwidth=2 expandtab syntax=lua foldmethod=marker foldlevelstart=0 foldlevel=0

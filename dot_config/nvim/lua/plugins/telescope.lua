@@ -15,12 +15,11 @@ local M = {
             build = 'make',
         },
     },
-    event = "Bufenter",
-    cmd = { "Telescope" },
+    event = "VeryLazy"
 }
 
 local opts = {
-    defaults = {
+    defaults = require('telescope.themes').get_ivy {
         -- Default configuration for telescope goes here:
         -- config_key = value,
     },
@@ -45,11 +44,9 @@ local opts = {
 local function register_keybindings()
     local keys = require "core.utils".keys
     local builtin = require "telescope.builtin"
-    local extensions = require "telescope".extensions
 
     keys.nmap('<leader> ', builtin.find_files, { desc = "Find files" })
-    keys.nmap('<leader>.', function() extensions.file_browser.file_browser({ path="%:p:h", select_buffer=true}) end, { desc = "Browse project" })
-    keys.nmap('<leader>,', builtin.buffers, { desc = "Opened buffers" })
+    keys.nmap('<leader>,', builtin.buffers, { desc = "Select buffer" })
     keys.nmap('<leader>/', builtin.current_buffer_fuzzy_find, { desc = "Search current buffer" })
     keys.nmap("<leader>'", builtin.live_grep, { desc = "Search everywhere" })
     keys.nmap('<leader>;', builtin.command_history, { desc = "Search recent commands" })
@@ -73,11 +70,11 @@ local function register_keybindings()
 
     -- "+search",
     keys.nmap('<leader>sb', builtin.current_buffer_fuzzy_find, { desc = "Current buffer" })
-    keys.nmap('<leader>st', builtin.live_grep, { desc = "Everywhere" })
     keys.nmap('<leader>sc', builtin.command_history, { desc = "Commands history" })
+    keys.nmap('<leader>se', builtin.live_grep, { desc = "Everywhere" })
     keys.nmap('<leader>sm', builtin.marks, { desc = "Marks" })
     keys.nmap('<leader>sr', builtin.resume, { desc = "Resume previous search" })
-    keys.nmap('<leader>stw', builtin.grep_string, { desc = "Word under cursor" })
+    keys.nmap('<leader>sw', builtin.grep_string, { desc = "Word under cursor" })
 
     -- "+tweak",
     keys.nmap('<leader>tC', function() builtin.colorscheme({enable_preview = true}) end, { desc = "Switch colorscheme" })

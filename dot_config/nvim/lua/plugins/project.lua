@@ -9,14 +9,14 @@ local M = {
     dependencies = {
         "nvim-telescope/telescope.nvim",
     },
-    event = "Bufenter",
-    cmd = { "Telescope" },
+    keys = {
+        { "<leader>po", "<Cmd>Telescope projects<CR>", desc = "Open recent" },
+    },
+    event = "VeryLazy",
 }
 
 function M.config()
-    local project = require "project_nvim"
-
-    project.setup {
+    require "project_nvim".setup {
         -- detection_methods = { "lsp", "pattern" }, -- NOTE: lsp detection will get annoying with multiple langs in one project
         detection_methods = { "pattern" },
 
@@ -24,8 +24,7 @@ function M.config()
         patterns = { ".git", "Makefile", "package.json", "go.mod", "cargo.toml" },
     }
 
-    local telescope = require "telescope"
-    telescope.load_extension "projects"
+    require "telescope".load_extension "projects"
 end
 
 return M
