@@ -50,6 +50,10 @@ vim_options {
     showmatch = true, -- Highlight search instances
     -- }}}
 
+    -- Sessions {{{
+    sessionoptions = "buffers,curdir,folds,globals,tabpages,winpos,winsize",
+    -- }}}
+
     -- Term {{{
     termguicolors = true,
     -- }}}
