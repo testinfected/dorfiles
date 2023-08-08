@@ -1,6 +1,6 @@
 --[[
   File: file-browser.lua
-  Description: A file browser extension for telescope.nvim
+  Description: File browser extension for telescope.nvim
   See: https://github.com/nvim-telescope/telescope-file-browser.nvim
 ]]
 

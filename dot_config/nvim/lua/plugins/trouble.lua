@@ -61,11 +61,13 @@ function M.config()
     }
 
     register_keybindings()
+
+    local icons = require "core.icons"
     set_sign_icons({
-        error = '',
-        warn = '',
-        hint = '',
-        info = ''
+        error = icons.diagnostics.Error,
+        warn = icons.diagnostics.Warning,
+        hint = icons.diagnostics.Hint,
+        info = icons.diagnostics.Info
     })
 end
 

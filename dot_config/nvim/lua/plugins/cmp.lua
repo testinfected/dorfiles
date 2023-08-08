@@ -1,6 +1,6 @@
 --[[
   File: cmp.lua
-  Description: A completion engine plugin for neovim
+  Description: Completion engine plugin for neovim
   See: https://github.com/hrsh7th/nvim-cmp
 ]]
 
@@ -145,6 +145,7 @@ function M.config()
   local cmp = require "cmp"
   local lspkind = require "lspkind"
   local luasnip = require "luasnip"
+  local icons = require "core.icons"
 
   cmp.setup {
     -- Make the first item in completion menu always be selected.
@@ -178,12 +179,12 @@ function M.config()
         -- preset = 'codicons',
 
         menu = {
-          nvim_lsp = '󰘧',
-          luasnip = '',
-          buffer = '',
-          path = '',
-          nvim_lua = '',
-          latex_symbols = "",
+          nvim_lsp = icons.lsp.Lambda,
+          luasnip = icons.kind.Snippet,
+          buffer = icons.file.Modified,
+          path = icons.file.Path,
+          nvim_lua = icons.lsp.Lua,
+          latex_symbols = icons.lsp.Latex,
         }
       })
     },
