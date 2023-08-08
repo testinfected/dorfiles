@@ -53,6 +53,10 @@ function M.config()
             cmp = true,
             fidget = true,
             gitsigns = true,
+            indent_blankline = {
+                enabled = true,
+                colored_indent_levels = true,
+            },
             lsp_trouble = true,
             mason = true,
             neotree = true,
