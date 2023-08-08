@@ -8,6 +8,7 @@ local M = {
     'nvim-telescope/telescope.nvim',
     tag = '0.1.2',
     dependencies = {
+        "nvim-lua/popup.nvim",
         "nvim-lua/plenary.nvim",
         {
             -- much faster fzf than its lua counterpart
