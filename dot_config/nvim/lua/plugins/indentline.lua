@@ -10,9 +10,10 @@ local M = {
 }
 
 function M.config()
+    local icons = require "core.icons"
     require "indent_blankline".setup {
-        char = '▏',
-        context_char = '┃', -- pecifies the character to be used for the current context indent line
+        char = icons.ui.VerticalLine,
+        context_char = icons.ui.VerticalLineThick, -- pecifies the character to be used for the current context indent line
 
         show_current_context = true,
         show_current_context_start = true,

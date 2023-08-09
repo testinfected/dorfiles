@@ -112,7 +112,7 @@ function M.config()
     require('lualine').setup {
         options = {
             theme = bubble_theme(),
-            component_separators = icons.ui.VerticalSeparator,
+            component_separators = icons.ui.VerticalDottedLineThick,
             section_separators = { left = icons.ui.RightPill, right = icons.ui.LeftPill },
         },
         sections = {

@@ -77,6 +77,9 @@ return {
     ui = {
         RightPill = '',
         LeftPill = '',
-        VerticalSeparator = '|',
+        VerticalLine = '|',
+        VerticalLineThick = '┃',
+        VerticalDottedLine = '',
+        VerticalDottedLineThick = '󰇙',
     },
 }

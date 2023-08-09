@@ -17,7 +17,13 @@ local M = {
     event = { "BufReadPre", "BufAdd", "BufNew", "BufReadPost" },
 }
 
+local function set_group_label_highlight(name, hl)
+    vim.cmd(string.format("hi BufferLine%sLabel guifg=%s", name, hl.fg))
+end
+
 function M.config()
+    local palette = require("catppuccin.palettes").get_palette()
+
     require("bufferline").setup {
         highlights = require("catppuccin.groups.integrations.bufferline").get() {
             background = {
@@ -59,7 +65,10 @@ function M.config()
                 items = {
                     {
                         name = "Tests", -- Mandatory
-                        highlight = { sp = require("catppuccin.palettes").get_palette().green }, -- Optional
+                        -- highlight always uses fill bg as label fg color,
+                        --   which results in text color when theme is set to use transparent_bg.
+                        --   So we'll use the default highlight then set bg color after setup
+                        highlight = { sp = palette.green },
                         auto_close = true,  -- whether or not close this group if it doesn't contain the current buffer
                         priority = 2, -- determines where it will appear relative to other groups (Optional)
                         icon = "", -- Optional
@@ -71,7 +80,7 @@ function M.config()
                     },
                     {
                         name = "Docs",
-                        highlight = { sp = require("catppuccin.palettes").get_palette().mauve },
+                        highlight = { sp = palette.mauve },
                         auto_close = true,  -- whether or not close this group if it doesn't contain the current buffer
                         matcher = function(buf)
                             return buf.name:match('%.md') or buf.name:match('%.txt')
@@ -81,6 +90,9 @@ function M.config()
             }
         }
     }
+
+    set_group_label_highlight("Tests", { fg = palette.mantle })
+    set_group_label_highlight("Docs", { fg = palette.mantle })
 end
 
 return M
