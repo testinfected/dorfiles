@@ -50,6 +50,7 @@ function M.config()
             end,
         },
         integrations = {
+            alpha = true,
             cmp = true,
             fidget = true,
             gitsigns = true,
