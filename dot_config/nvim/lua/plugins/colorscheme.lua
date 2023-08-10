@@ -64,6 +64,7 @@ function M.config()
             },
             lsp_trouble = true,
             mason = true,
+            neotest = true,
             neotree = true,
             noice = true,
             notify = true,

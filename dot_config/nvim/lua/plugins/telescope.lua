@@ -76,9 +76,6 @@ local function register_keybindings()
     keys.nmap('<leader>sr', builtin.resume, { desc = "Resume previous search" })
     keys.nmap('<leader>sw', builtin.grep_string, { desc = "Word under cursor" })
 
-    -- "+tweak",
-    keys.nmap('<leader>tC', function() builtin.colorscheme({enable_preview = true}) end, { desc = "Switch colorscheme" })
-
     keys.nmap('<leader>v', builtin.registers, { desc = "Registers" })
 end
 

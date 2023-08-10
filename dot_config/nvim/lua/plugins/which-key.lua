@@ -99,7 +99,7 @@ function M.config()
                 name = "+Search",
             },
             t = {
-                name = "+Tweak",
+                name = "+Test",
             },
             x = {
                 name = "+Trouble",
