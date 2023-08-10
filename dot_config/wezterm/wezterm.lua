@@ -15,13 +15,14 @@ config.term = "wezterm"
 
 -- This is where you actually apply your config choices
 config.font = wezterm.font 'MesloLGS Nerd Font'
+config.font_size = 13.0
 
 -- For example, changing the color scheme:
 config.color_scheme = "Catppuccin Mocha" -- or Macchiato, Frappe, Latte
 
 config.window_decorations = "RESIZE"
 
-config.window_background_opacity = 0.90
+config.window_background_opacity = 0.95
 config.macos_window_background_blur = 8 
 config.window_padding = {
   left = '2cell',
