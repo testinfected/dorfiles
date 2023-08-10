@@ -52,6 +52,10 @@ function M.config()
         integrations = {
             alpha = true,
             cmp = true,
+            dap = {
+                enabled = true,
+                enable_ui = true, -- enable nvim-dap-ui
+            },
             fidget = true,
             gitsigns = true,
             indent_blankline = {

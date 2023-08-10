@@ -33,6 +33,12 @@ return {
         TypeParameter = "",
     },
 
+    debug = {
+        Expanded = "",
+        Collapsed = "",
+        Circular = "",
+    },
+
     git = {
         LineAdded = "",
         LineModified = "",

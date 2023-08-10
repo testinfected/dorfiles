@@ -63,6 +63,12 @@ function M.config()
                     name = "+Diagnostics",
                 },
             },
+            d = {
+                name = "+Debug",
+                b = {
+                    name = "+Breakpoint"
+                }
+            },
             f = {
                 name = "+File",
             },
