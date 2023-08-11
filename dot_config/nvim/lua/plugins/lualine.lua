@@ -114,6 +114,16 @@ function M.config()
             theme = bubble_theme(),
             component_separators = icons.ui.VerticalDottedLineThick,
             section_separators = { left = icons.ui.RightPill, right = icons.ui.LeftPill },
+            disabled_filetypes = {
+                statusline = {
+                    "alpha",
+                    "TelescopePrompt",
+                    "TelescopeResults",
+                    "lazy",
+                    "lspinfo",
+                    "lsp-installer",
+                }
+            }
         },
         sections = {
             lualine_a = {

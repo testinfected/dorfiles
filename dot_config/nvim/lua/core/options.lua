@@ -29,13 +29,14 @@ vim_options {
     -- }}}
 
     -- Useful options {{{
-    showmode = false, -- we don't need to see things like -- INSERT -- anymore
-    number = true,
-    mouse = 'a',
+    showmode = false, -- Don't show mode anymore
+    number = true, -- Show line numbers
+    mouse = 'a', -- Enable mouse in all modes,
     -- }}}
 
     -- Clipboard {{{
-    clipboard = 'unnamed,unnamedplus', -- Use system clipboard
+    -- Let's use registers explicitly
+    -- clipboard = 'unnamed,unnamedplus', -- Use system clipboard
     fixeol = false, -- Turn off appending new line in the end of a file
     -- }}}
 
@@ -51,10 +52,12 @@ vim_options {
     -- }}}
 
     -- Sessions {{{
-    sessionoptions = "buffers,curdir,folds,globals,tabpages,winpos,winsize",
+    sessionoptions = "buffers,curdir,globals,tabpages,winpos,winsize", -- Save these in session
+    backup = false, -- Don't create a backup file
     -- }}}
 
     -- Term {{{
+    -- Adding true color
     termguicolors = true,
     -- }}}
 
