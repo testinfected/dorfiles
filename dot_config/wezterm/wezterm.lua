@@ -22,8 +22,8 @@ config.color_scheme = "Catppuccin Mocha" -- or Macchiato, Frappe, Latte
 
 config.window_decorations = "RESIZE"
 
-config.window_background_opacity = 0.95
-config.macos_window_background_blur = 8 
+-- config.window_background_opacity = 0.95
+config.macos_window_background_blur = 8
 config.window_padding = {
   left = '2cell',
   right = '2cell',
