@@ -1,3 +1,8 @@
 LICENSE
 README.md
 dot_git
+*.iml
+*.idea
+
+dot_config/nvim/lazy-lock.json
+dot_config/lazygit/state.yml
