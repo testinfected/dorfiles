@@ -31,6 +31,8 @@ vim_options {
     -- Useful options {{{
     showmode = false, -- Don't show mode anymore
     number = true, -- Show line numbers
+    cursorline = true,
+    cursorlineopt = 'number',
     mouse = 'a', -- Enable mouse in all modes,
     -- }}}
 
