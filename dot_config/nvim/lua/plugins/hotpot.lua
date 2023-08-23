@@ -5,8 +5,8 @@
 ]]
 
 return {
-    -- Hotpot fennel compiler {{{
-    "rktjmp/hotpot.nvim",
-    lazy = false,
+  -- Hotpot fennel compiler {{{
+  'rktjmp/hotpot.nvim',
+  lazy = false,
 }
 

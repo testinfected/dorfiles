@@ -5,15 +5,14 @@
 ]]
 
 local M = {
-    'simrat39/symbols-outline.nvim',
-    keys = {
-        { '<leader>co', '<Cmd>SymbolsOutline<CR>', desc = "Symbols outline" }
-    }
+  'simrat39/symbols-outline.nvim',
+  keys = {
+    { '<leader>co', [[<Cmd>SymbolsOutline<CR>]], desc = "Symbols outline" }
+  }
 }
 
 function M.config()
-    require("symbols-outline").setup {
-    }
+  require('symbols-outline').setup()
 end
 
 return M

@@ -5,38 +5,38 @@
 ]]
 
 local M = {
-    "nvim-telescope/telescope-file-browser.nvim",
-    dependencies = {
-        "nvim-telescope/telescope.nvim",
-    },
-    keys = {
-        {  '<leader>.', "<Cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>", desc = "Open file browser" },
-        {  '<leader>pb', "<Cmd>Telescope file_browser<CR>", desc = "Browse" },
-    },
-    event = { "VeryLazy" },
+  'nvim-telescope/telescope-file-browser.nvim',
+  dependencies = {
+    'nvim-telescope/telescope.nvim',
+  },
+  keys = {
+    { '<leader>.', [[<Cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>]], desc = "Open file browser" },
+    { '<leader>pb', [[<Cmd>Telescope file_browser<CR>]], desc = "Browse" },
+  },
+  event = { 'VeryLazy' },
 }
 
 function M.config()
-    local telescope = require "telescope"
+  local telescope = require('telescope')
 
-    telescope.setup {
-        extensions = {
-            file_browser = {
-                -- disables netrw and use telescope-file-browser in its place
-                hijack_netrw = true,
-                mappings = {
-                    ["i"] = {
-                        -- your custom insert mode mappings
-                    },
-                    ["n"] = {
-                        -- your custom normal mode mappings
-                    },
-                },
-            }
-        }
+  telescope.setup {
+    extensions = {
+      file_browser = {
+        -- disables netrw and use telescope-file-browser in its place
+        hijack_netrw = true,
+        mappings = {
+          ['i'] = {
+            -- your custom insert mode mappings
+          },
+          ['n'] = {
+            -- your custom normal mode mappings
+          },
+        },
+      }
     }
+  }
 
-    telescope.load_extension "file_browser"
+  telescope.load_extension('file_browser')
 end
 
 return M

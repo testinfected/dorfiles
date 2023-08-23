@@ -6,31 +6,22 @@
 
 local M = {
   'hrsh7th/nvim-cmp',
-  event = { "InsertEnter", "CmdlineEnter" },
+  event = { 'InsertEnter', 'CmdlineEnter' },
   dependencies = {
-    'L3MON4D3/LuaSnip',
-    'saadparwaiz1/cmp_luasnip',
-    'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-cmdline',
     'hrsh7th/cmp-emoji',
+    'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-nvim-lsp-signature-help',
     'hrsh7th/cmp-nvim-lua',
+    'saadparwaiz1/cmp_luasnip',
+    'L3MON4D3/LuaSnip',
     'rafamadriz/friendly-snippets',
   },
 }
 
-local sources = {
-  { name = 'nvim_lsp' },                -- LSP
-  { name = 'nvim_lsp_signature_help' }, -- LSP for parameters in functions
-  { name = 'nvim_lua' },                -- Lua Neovim API
-  { name = 'luasnip' },                 -- Luasnip
-  { name = 'buffer' },                  -- Buffers
-  { name = 'path' },                    -- Paths
-}
-
-local function map_keys(cmp)
+local function key_mapping(cmp)
   local function check_back_space()
     local col = vim.fn.col('.') - 1
     if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
@@ -41,7 +32,7 @@ local function map_keys(cmp)
   end
 
   return {
-    ['<C-y>'] = cmp.mapping.confirm({select = true}),
+    ['<C-y>'] = cmp.mapping.confirm { select = true },
     ['<C-e>'] = cmp.mapping.abort(),
 
     -- Use <C-k> and <C-j> to navigate through completion variants
@@ -79,24 +70,24 @@ local function map_keys(cmp)
       end
     end),
 
-    -- Don't confirm when no item selected, add regular newline instead
-    ['<CR>'] = cmp.mapping({
+    ['<CR>'] = cmp.mapping {
+      -- Don't confirm when no item selected, add regular newline instead
       i = function(fallback)
         if cmp.visible() then
-          cmp.confirm({ select = false, behavior = cmp.ConfirmBehavior.Replace})
+          cmp.confirm { select = false, behavior = cmp.ConfirmBehavior.Replace }
         else
           fallback()
         end
       end,
-      s = cmp.mapping.confirm({ select = true }),
-      c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
-    }),
+      s = cmp.mapping.confirm { select = true },
+      c = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false },
+    },
 
     -- Use ESC to abort autocomplete
-    ['<ESC>'] = cmp.mapping({
+    ['<ESC>'] = cmp.mapping {
       i = cmp.mapping.abort(), -- Abort completion
       c = cmp.mapping.close(), -- Close completion window
-    }),
+    },
 
     -- when menu is visible, navigate to next item
     -- when line is empty, insert a tab character
@@ -109,7 +100,7 @@ local function map_keys(cmp)
       else
         cmp.complete()
       end
-    end, {'i', 's'}),
+    end, { 'i', 's' }),
 
     -- when menu is visible, navigate to previous item on list
     -- else, revert to default behavior
@@ -119,7 +110,7 @@ local function map_keys(cmp)
       else
         fallback()
       end
-    end, {'i', 's'}),
+    end, { 'i', 's' }),
 
     -- Jump to the next placeholder in the snippet.
     ['<C-f>'] = cmp.mapping(function(fallback)
@@ -128,7 +119,7 @@ local function map_keys(cmp)
       else
         fallback()
       end
-    end, {'i', 's'}),
+    end, { 'i', 's' }),
 
     -- go to previous placeholder in the snippet
     ['<C-b>'] = cmp.mapping(function(fallback)
@@ -137,15 +128,15 @@ local function map_keys(cmp)
       else
         fallback()
       end
-    end, {'i', 's'})
+    end, { 'i', 's' })
   }
 end
 
 function M.config()
-  local cmp = require "cmp"
-  local lspkind = require "lspkind"
-  local luasnip = require "luasnip"
-  local icons = require "core.icons"
+  local cmp = require('cmp')
+  local lspkind = require('lspkind')
+  local luasnip = require('luasnip')
+  local icons = require('core.icons')
 
   cmp.setup {
     -- Make the first item in completion menu always be selected.
@@ -161,15 +152,23 @@ function M.config()
       end
     },
 
-    mapping = map_keys(cmp),
+    mapping = key_mapping(cmp),
 
-    sources = cmp.config.sources(sources, {}),
+    sources = cmp.config.sources({
+      { name = 'nvim_lsp' }, -- LSP
+      { name = 'nvim_lsp_signature_help' }, -- LSP for parameters in functions
+      { name = 'nvim_lua' }, -- Lua Neovim API
+      { name = 'luasnip' }, -- Luasnip
+      { name = 'path' }, -- Paths
+    }, {
+      --{ name = 'buffer'}
+    }),
 
     formatting = {
       -- changing the order of fields so the icon is the first
-      fields = {'menu', 'abbr', 'kind'},
+      fields = { 'menu', 'abbr', 'kind' },
 
-      format = lspkind.cmp_format({
+      format = lspkind.cmp_format {
         -- defines how annotations are shown
         -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
         mode = 'symbol_text',
@@ -186,7 +185,7 @@ function M.config()
           nvim_lua = icons.lsp.Lua,
           latex_symbols = icons.lsp.Latex,
         }
-      })
+      }
     },
 
     window = {
@@ -213,12 +212,23 @@ function M.config()
     sources = cmp.config.sources({
       { name = 'path' }
     }, {
-      --{ name = 'cmdline' }
-    })
+      { name = 'cmdline' }
+    }),
+    enabled = function()
+      -- Set of commands where cmp will be disabled
+      local disabled = {
+        q = true,
+      }
+      -- Get first word of cmdline
+      local cmd = vim.fn.getcmdline():match('%S+')
+      -- Return true if cmd isn't disabled
+      -- else call/return cmp.close(), which returns false
+      return not disabled[cmd] or cmp.close()
+    end
   })
 
   -- Add snippets from Friendly Snippets
-  require "luasnip/loaders/from_vscode".lazy_load()
+  require('luasnip/loaders/from_vscode').lazy_load()
 end
 
 return M

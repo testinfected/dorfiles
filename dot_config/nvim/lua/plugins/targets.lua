@@ -7,6 +7,6 @@
 -- :help targets-settings
 -- see cheatsheet: https://github.com/wellle/targets.vim/blob/master/cheatsheet.md
 return {
-    "wellle/targets.vim",
-    event = { "BufReadPost", "BufNewFile" },
+  'wellle/targets.vim',
+  event = { 'BufReadPost', 'BufNewFile' },
 }

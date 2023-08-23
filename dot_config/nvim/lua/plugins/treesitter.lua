@@ -5,26 +5,26 @@
 ]]
 
 local M = {
-  "nvim-treesitter/nvim-treesitter",
+  'nvim-treesitter/nvim-treesitter',
   dependencies = {
-    "nvim-treesitter/nvim-treesitter-textobjects"
+    'nvim-treesitter/nvim-treesitter-textobjects'
   },
-  build = ":TSUpdate",
-  event = { "BufReadPost", "BufNewFile" },
+  build = [[:TSUpdate]],
+  event = { 'BufReadPost', 'BufNewFile' },
 }
 
 local parsers = {
-  "lua",
-  "typescript",
-  "javascript",
-  "go",
-  "python",
-  "rust",
-  "vim"
+  'lua',
+  'typescript',
+  'javascript',
+  'go',
+  'python',
+  'rust',
+  'vim'
 }
 
 function M.config()
-  local treesitter = require "nvim-treesitter.configs"
+  local treesitter = require('nvim-treesitter.configs')
 
   treesitter.setup {
     -- Needed parsers
@@ -48,12 +48,23 @@ function M.config()
         keymaps = {
           -- You can use the capture groups defined in textobjects.scm
           -- see https://github.com/nvim-treesitter/nvim-treesitter-textobjects#built-in-textobjects
-          ["aa"] = "@parameter.outer",
-          ["ia"] = "@parameter.inner",
-          ["af"] = "@function.outer",
-          ["if"] = "@function.inner",
-          ["ac"] = "@class.outer",
-          ["ic"] = "@class.inner",
+          ['aa'] = '@parameter.outer',
+          ['ia'] = '@parameter.inner',
+          ['af'] = '@function.outer',
+          ['if'] = '@function.inner',
+          ['ac'] = '@class.outer',
+          ['ic'] = '@class.inner',
+          ['aC'] = '@conditional.outer',
+          ['iC'] = '@conditional.inner',
+          ['ae'] = '@block.outer',
+          ['ie'] = '@block.inner',
+          ['al'] = '@loop.outer',
+          ['il'] = '@loop.inner',
+          ['is'] = '@statement.inner',
+          ['as'] = '@statement.outer',
+          ['ad'] = '@comment.outer',
+          ['am'] = '@call.outer',
+          ['im'] = '@call.inner'
         },
       },
       -- You can choose the select mode (default is charwise 'v')
@@ -72,20 +83,20 @@ function M.config()
         enable = true,
         set_jumps = true, -- whether to set jumps in the jumplist
         goto_next_start = {
-          ["]m"] = "@function.outer",
-          ["]]"] = "@class.outer",
+          [']m'] = '@function.outer',
+          [']]'] = '@class.outer',
         },
         goto_next_end = {
-          ["]M"] = "@function.outer",
-          ["]["] = "@class.outer",
+          [']M'] = '@function.outer',
+          [']['] = '@class.outer',
         },
         goto_previous_start = {
-          ["[m"] = "@function.outer",
-          ["[["] = "@class.outer",
+          ['[m'] = '@function.outer',
+          ['[['] = '@class.outer',
         },
         goto_previous_end = {
-          ["[M"] = "@function.outer",
-          ["[]"] = "@class.outer",
+          ['[M'] = '@function.outer',
+          ['[]'] = '@class.outer',
         },
       },
     },

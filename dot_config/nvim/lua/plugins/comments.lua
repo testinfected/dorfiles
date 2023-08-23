@@ -6,7 +6,6 @@
 
 -- :help comment-nvim
 return {
-    "numToStr/Comment.nvim",
-    event = {"BufRead", "BufNewFile"},
+  'numToStr/Comment.nvim',
+  event = { 'BufRead', 'BufNewFile' },
 }
-

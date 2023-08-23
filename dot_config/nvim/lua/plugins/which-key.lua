@@ -5,21 +5,15 @@
 ]]
 
 local M = {
-    "folke/which-key.nvim",
-    event = "VeryLazy"
+    'folke/which-key.nvim',
+    event = 'VeryLazy'
 }
 
-function M.init()
-    vim.o.timeout = true
-    vim.o.timeoutlen = 300
-end
-
 function M.config()
-    local wk = require "which-key"
-
+    local wk = require('which-key')
     wk.setup {
         window = {
-            border = "rounded", -- none, single, double, shadow
+            border = 'rounded', -- none, single, double, shadow
             align = 'center',
             margin = { 1, 0, 1, 0 }, -- extra window margin [top, right, bottom, left]
             padding = { 2, 2, 2, 2 }, -- extra window padding [top, right, bottom, left]
@@ -43,7 +37,7 @@ function M.config()
         [']'] = {
             name = "+Navigate (forward)"
         },
-        ['g'] = {
+        g = {
             name = "+Goto",
         },
         z = {
@@ -61,12 +55,14 @@ function M.config()
                 name = "+Code",
                 d = {
                     name = "+Diagnostics",
+                    _ = 'which_key_ignore'
                 },
             },
             d = {
                 name = "+Debug",
                 b = {
-                    name = "+Breakpoint"
+                    name = "+Breakpoint",
+                    _ = 'which_key_ignore'
                 }
             },
             f = {
@@ -76,9 +72,11 @@ function M.config()
                 name = "+Git",
                 g = {
                     name = "+Show",
+                    _ = 'which_key_ignore'
                 },
                 t = {
                     name = "+Toggle",
+                    _ = 'which_key_ignore'
                 },
             },
             h = {
@@ -86,8 +84,8 @@ function M.config()
             },
             k = {
                 name = "+Keymaps",
-                s = { function() vim.cmd "WhichKey" end, "Show", },
-                l = { function() local input = vim.fn.input "WhichKey: " vim.cmd("WhichKey " .. input) end, "Lookup..." }
+                s = { function() vim.cmd [[WhichKey]] end, "Show", },
+                l = { function() local input = vim.fn.input "WhichKey: " vim.cmd([[WhichKey ]] .. input) end, "Lookup..." }
             },
             l = {
                 name = "+Plugins"
