@@ -1,3 +1,9 @@
+--[[
+  File: dashboard.lua
+  Description: Fancy and blazing fast start screen
+  See: https://github.com/goolord/alpha-nvim
+]]
+
 local M = {
   'goolord/alpha-nvim',
   event = 'VimEnter',
