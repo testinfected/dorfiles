@@ -51,6 +51,12 @@ function M.config()
     },
     integrations = {
       alpha = true,
+      barbecue = {
+        dim_dirname = true, -- directory name is dimmed by default
+        bold_basename = true,
+        dim_context = false,
+        alt_background = false,
+      },
       cmp = true,
       dap = {
         enabled = true,
