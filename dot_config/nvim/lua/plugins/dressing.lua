@@ -6,7 +6,10 @@
 
 local M = {
   'stevearc/dressing.nvim',
-  event = 'VeryLazy'
+  dependencies = {
+    'nvim-telescope/telescope.nvim'
+  },
+  lazy = 'VeryLazy'
 }
 
 function M.config()
