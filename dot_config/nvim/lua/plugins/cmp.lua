@@ -21,117 +21,6 @@ local M = {
   },
 }
 
-local function key_mapping(cmp)
-  local function check_back_space()
-    local col = vim.fn.col('.') - 1
-    if col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-      return true
-    else
-      return false
-    end
-  end
-
-  return {
-    ['<C-y>'] = cmp.mapping.confirm { select = true },
-    ['<C-e>'] = cmp.mapping.abort(),
-
-    -- Use <C-k> and <C-j> to navigate through completion variants
-    ['<C-k>'] = cmp.mapping(cmp.mapping.select_prev_item(), { 'i', 'c' }),
-    ['<C-j>'] = cmp.mapping(cmp.mapping.select_next_item(), { 'i', 'c' }),
-    ['<Up>'] = cmp.mapping.select_prev_item(),
-    ['<Down>'] = cmp.mapping.select_next_item(),
-
-    -- Alternatively
-    ['<C-p>'] = cmp.mapping(function()
-      if cmp.visible() then
-        cmp.select_prev_item()
-      else
-        cmp.complete()
-      end
-    end),
-    ['<C-n>'] = cmp.mapping(function()
-      if cmp.visible() then
-        cmp.select_next_item()
-      else
-        cmp.complete()
-      end
-    end),
-
-    -- Scroll text in documentation window
-    ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-d>'] = cmp.mapping.scroll_docs(4),
-
-    -- toggle completion
-    ['<C-Space>'] = cmp.mapping(function()
-      if cmp.visible() then
-        cmp.abort()
-      else
-        cmp.complete()
-      end
-    end),
-
-    ['<CR>'] = cmp.mapping {
-      -- Don't confirm when no item selected, add regular newline instead
-      i = function(fallback)
-        if cmp.visible() then
-          cmp.confirm { select = false, behavior = cmp.ConfirmBehavior.Replace }
-        else
-          fallback()
-        end
-      end,
-      s = cmp.mapping.confirm { select = true },
-      c = cmp.mapping.confirm { behavior = cmp.ConfirmBehavior.Replace, select = false },
-    },
-
-    -- Use ESC to abort autocomplete
-    ['<ESC>'] = cmp.mapping {
-      i = cmp.mapping.abort(), -- Abort completion
-      c = cmp.mapping.close(), -- Close completion window
-    },
-
-    -- when menu is visible, navigate to next item
-    -- when line is empty, insert a tab character
-    -- else, activate completion
-    ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif check_back_space() then
-        fallback()
-      else
-        cmp.complete()
-      end
-    end, { 'i', 's' }),
-
-    -- when menu is visible, navigate to previous item on list
-    -- else, revert to default behavior
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-
-    -- Jump to the next placeholder in the snippet.
-    ['<C-f>'] = cmp.mapping(function(fallback)
-      if luasnip.jumpable(1) then
-        luasnip.jump(1)
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-
-    -- go to previous placeholder in the snippet
-    ['<C-b>'] = cmp.mapping(function(fallback)
-      if luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, { 'i', 's' })
-  }
-end
-
 function M.config()
   local cmp = require('cmp')
   local lspkind = require('lspkind')
@@ -143,7 +32,9 @@ function M.config()
     preselect = 'item',
 
     completion = {
-      completeopt = 'menu,menuone,noinsert,preview'
+      -- Disable the completion menu, you must invoke it with <c-space>
+      autocomplete = false,
+      completeopt = 'menu,menuone,longest,preview,noinsert,noselect'
     },
 
     snippet = {
@@ -152,7 +43,17 @@ function M.config()
       end
     },
 
-    mapping = key_mapping(cmp),
+    mapping = cmp.mapping.preset.insert {
+      -- Scroll text in documentation window
+      ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-d>'] = cmp.mapping.scroll_docs(4),
+      -- toggle completion
+      ['<C-Space>'] = cmp.mapping(function() if cmp.visible() then cmp.abort() else cmp.complete() end end),
+      -- Jump to the next placeholder in the snippet.
+      ['<C-f>'] = cmp.mapping(function(fallback) if luasnip.jumpable(1) then luasnip.jump(1) else fallback() end end),
+      -- go to previous placeholder in the snippet
+      ['<C-b>'] = cmp.mapping(function(fallback) if luasnip.jumpable(-1) then luasnip.jump(-1) else fallback() end end)
+    },
 
     sources = cmp.config.sources({
       { name = 'nvim_lsp' }, -- LSP
@@ -161,7 +62,7 @@ function M.config()
       { name = 'luasnip' }, -- Luasnip
       { name = 'path' }, -- Paths
     }, {
-      --{ name = 'buffer'}
+      { name = 'buffer'}
     }),
 
     formatting = {
@@ -214,17 +115,6 @@ function M.config()
     }, {
       { name = 'cmdline' }
     }),
-    enabled = function()
-      -- Set of commands where cmp will be disabled
-      local disabled = {
-        q = true,
-      }
-      -- Get first word of cmdline
-      local cmd = vim.fn.getcmdline():match('%S+')
-      -- Return true if cmd isn't disabled
-      -- else call/return cmp.close(), which returns false
-      return not disabled[cmd] or cmp.close()
-    end
   })
 
   -- Add snippets from Friendly Snippets
