@@ -62,7 +62,6 @@ function M.config()
         enabled = true,
         enable_ui = true, -- enable nvim-dap-ui
       },
-      fidget = true,
       gitsigns = true,
       illuminate = true,
       indent_blankline = {
@@ -73,6 +72,7 @@ function M.config()
       mason = true,
       neotest = true,
       neotree = true,
+      noice = true,
       symbols_outline = true,
       telescope = {
         enabled = true,
