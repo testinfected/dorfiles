@@ -37,7 +37,7 @@ vim_options {
   cursorlineopt = 'number',
   mouse = 'a', -- Enable mouse in all modes,
   timeout = true,
-  timeoutlen = 100, -- Wait no more that 100ms for key mappings to complete, change according to your typing speed
+  timeoutlen = 200, -- Wait no more that 200ms for key mappings to complete, change according to your typing speed
   -- }}}
 
   -- Clipboard {{{
@@ -54,6 +54,7 @@ vim_options {
   -- Search {{{
   ignorecase = true, -- Ignore case if all characters in lower case
   joinspaces = false, -- Join multiple spaces in search
+  incsearch = true,
   smartcase = true, -- When there is a one capital letter search for exact match
   showmatch = true, -- Highlight search instances
   -- }}}
