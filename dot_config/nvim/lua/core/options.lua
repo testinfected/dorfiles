@@ -13,7 +13,7 @@ vim.cmd [[autocmd FileType * setlocal formatoptions-=cro]]
 -- Set leader and local leader keys
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ','
-vim.keymap.set({ 'n', 'v' }, '<leader>', '<Nop>', { silent = true, remap = false })
+vim.keymap.set({ 'n', 'v' }, '<leader>', '<Nop>', { silent = true })
 
 -- Vim options
 local function vim_options(opts)

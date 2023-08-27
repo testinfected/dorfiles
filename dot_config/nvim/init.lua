@@ -4,8 +4,8 @@
 ]]
 
 require 'core.fennel' -- Fennel code goes to fnl/
-require 'core.options'
-require 'core.lazy'
-require 'core.keybindings'
+require 'core.options' -- set before loading plugins
+require 'core.lazy' -- leader key needs to be defined
+require 'core.keymaps'
 
 -- vim:tabstop=2 shiftwidth=2 expandtab syntax=lua foldmethod=marker foldlevelstart=0 foldlevel=0
