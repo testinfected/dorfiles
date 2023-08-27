@@ -5,10 +5,11 @@
 ]]
 
 local M = {
-    "folke/noice.nvim",
-    event = "VeryLazy",
+    'folke/noice.nvim',
+    event = 'VeryLazy',
     dependencies = {
-        "MunifTanjim/nui.nvim",
+        'MunifTanjim/nui.nvim',
+        'nvim-telescope/telescope.nvim',
     }
 }
 
@@ -16,7 +17,7 @@ function M.config()
   require('noice').setup {
     cmdline = {
       enabled = true, -- enable Noice cmdline UI
-      view = 'cmdline_popup', -- view for rendering the cmdline. Change to `cmdline` to get a classic cmdline at the bottom
+      view = 'cmdline', -- view for rendering the cmdline. Change to `cmdline` to get a classic cmdline at the bottom
     },
     messages = {
       -- NOTE: If you enable messages, then the cmdline is enabled automatically.
@@ -40,9 +41,9 @@ function M.config()
         },
         override = {
             override = {
-                ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-                ["vim.lsp.util.stylize_markdown"] = true,
-                ["cmp.entry.get_documentation"] = true,
+                ['vim.lsp.util.convert_input_to_markdown_lines'] = true,
+                ['vim.lsp.util.stylize_markdown'] = true,
+                ['cmp.entry.get_documentation'] = true,
             },
         },
         hover = {
@@ -59,14 +60,15 @@ function M.config()
     presets = {
       -- you can enable a preset by setting it to true, or a table that will override the preset config
       -- you can also add custom presets that you can enable/disable with enabled=true
-      bottom_search = false, -- turn on to use a classic bottom cmdline for search
+      bottom_search = true, -- turn on to use a classic bottom cmdline for search
       command_palette = false, -- turn on to position the cmdline and popupmenu together
-      long_message_to_split = false, -- turn on to send long messages to a split
-      inc_rename = false, -- turn on to enable an input dialog for inc-rename.nvim
+      long_message_to_split = true, -- turn on to send long messages to a split
+      inc_rename = true, -- turn on to enable an input dialog for inc-rename.nvim
       lsp_doc_border = 'rounded', -- add a border to hover docs and signature help
-      inc_rename = true,
     },
   }
+
+  require('telescope').load_extension('noice')
 end
 
 return M

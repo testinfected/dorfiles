@@ -95,7 +95,7 @@ function M.config()
     },
 
     experimental = {
-      ghost_text = true,
+      --ghost_text = true,
     },
   }
 
@@ -109,7 +109,11 @@ function M.config()
 
   -- Use cmdline & path source for ':' (don't enable `native_menu`, otherwise this won't work).
   cmp.setup.cmdline(':', {
-    mapping = cmp.mapping.preset.cmdline(),
+    mapping = cmp.mapping.preset.cmdline {
+      ['<C-y>'] = {
+        c = cmp.mapping.close(), --avoids ghost text behavior with noice
+      },
+    },
     sources = cmp.config.sources({
       { name = 'path' }
     }, {
