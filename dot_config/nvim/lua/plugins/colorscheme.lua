@@ -74,6 +74,7 @@ function M.config()
       neotest = true,
       neotree = true,
       noice = true,
+      notifier = true,
       symbols_outline = true,
       telescope = {
         enabled = true,
@@ -100,15 +101,6 @@ function M.config()
         background = true,
       },
     },
-  }
-
-  -- Highlighting for notifier
-  local C = require('catppuccin.palettes').get_palette()
-  local highlighter = require('catppuccin.lib.highlighter')
-  highlighter.syntax {
-    NotifierIcon = { fg = C.mauve },
-    NotifierContent = { fg = C.overlay2, blend = 0, style = { 'italic' } },
-    NotifierContentDim =  { fg = C.overlay1, blend = 0, style = { 'italic'} },
   }
 
   vim.cmd [[colorscheme catppuccin]]
