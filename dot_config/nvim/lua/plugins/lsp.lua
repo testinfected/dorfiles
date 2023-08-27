@@ -13,6 +13,7 @@ local M = {
       -- See: https://github.com/onsails/lspkind.nvim
       'onsails/lspkind.nvim',
       'nvim-telescope/telescope.nvim',
+      'smjonas/inc-rename.nvim' -- incremental rename with preview
     },
   },
 }
@@ -54,7 +55,8 @@ local function setup_keymaps(bufnr)
   keys.nmap(prefix .. 'f', function() vim.lsp.buf.format { async = true } end, opts { desc = "Format document" })
   keys.nmap(prefix .. 'l', vim.lsp.codelens.run, opts { desc = "CodeLens Action" })
   keys.nmap(prefix .. 'q', telescope.quickfix, opts { desc = "Quickfix" })
-  keys.nmap(prefix .. 'r', vim.lsp.buf.rename, opts { desc = "Rename..." })
+  --keys.nmap(prefix .. 'r', vim.lsp.buf.rename, opts { desc = "Rename..." })
+  keys.nmap(prefix .. 'r', ":IncRename ", opts { desc = "Rename...", silent = true })
   keys.nmap(prefix .. 's', telescope.lsp_document_symbols, opts { desc = "Document symbols" })
   keys.nmap(prefix .. 'S', telescope.lsp_dynamic_workspace_symbols, opts { desc = "Workspace Symbols" })
   keys.nmap(prefix .. 'dl', function() vim.diagnostic.open_float(nil, { scope = 'buffer', border = 'rounded' }) end, opts { desc = "Line diagnostics" })

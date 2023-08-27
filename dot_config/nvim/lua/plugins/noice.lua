@@ -64,6 +64,7 @@ function M.config()
       long_message_to_split = false, -- turn on to send long messages to a split
       inc_rename = false, -- turn on to enable an input dialog for inc-rename.nvim
       lsp_doc_border = 'rounded', -- add a border to hover docs and signature help
+      inc_rename = true,
     },
   }
 end

@@ -37,7 +37,6 @@ function M.config()
       local prefix = '<leader>c' -- +Code
       keys.nmap(prefix .. 'a', require('go.codeaction').run_code_action, opts { desc = "Go Code action" })
       keys.vmap(prefix .. 'a', require('go.codeaction').run_range_code_action, opts { desc = "Go Code action" })
-      keys.nmap(prefix .. 'r', require('go.rename').lsprename, opts { desc = "Go Rename..."})
     end,
     lsp_diag_virtual_text = false, -- Set up as part of diagnostics
     dap_debug_keymap = false, -- I have set this up already with all my other nvim-dap setup
