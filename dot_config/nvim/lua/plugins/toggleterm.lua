@@ -13,7 +13,7 @@ local M = {
 function M.config()
   local toggleterm = require('toggleterm')
   toggleterm.setup {
-    open_mapping = [[<C-\>]],
+    open_mapping = [[<leader>\]],
     direction = 'float',
     shade_terminals = true,
     float_opts = {
