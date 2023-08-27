@@ -7,7 +7,6 @@
 local M = {
   'ellisonleao/glow.nvim',
   ft = { 'md' },
-  event = 'BufEnter'
 }
 
 function M.config()
