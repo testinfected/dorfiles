@@ -6,7 +6,7 @@
 
 local M = {
   'nvim-neo-tree/neo-tree.nvim',
-  branch = 'v2.x',
+  branch = 'v3.x',
   dependencies = {
     -- Lua functions you don't want to write twice
     'nvim-lua/plenary.nvim',
@@ -22,22 +22,7 @@ function M.config()
   local neo_tree = require('neo-tree')
 
   neo_tree.setup {
-    close_if_last_window = true,
-    name = {
-      trailing_slash = true,
-      use_git_status_colors = true,
-      highlight = 'NeoTreeFileName',
-    },
-    window = {
-      width = 50,
-      mappings = {
-        ['l'] = 'open',
-        ['h'] = 'close_node',
-      }
-    },
-    filesystem = {
-      follow_current_file = true,
-    },
+    -- defaults are fine
   }
 end
 
