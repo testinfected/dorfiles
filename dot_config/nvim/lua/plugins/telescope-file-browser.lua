@@ -1,4 +1,4 @@
---[[
+ --[[
   File: file-browser.lua
   Description: File browser extension for telescope.nvim
   See: https://github.com/nvim-telescope/telescope-file-browser.nvim
@@ -10,8 +10,8 @@ local M = {
     'nvim-telescope/telescope.nvim',
   },
   keys = {
-    { '<leader>.', [[<Cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>]], desc = "Open file browser" },
-    { '<leader>pb', [[<Cmd>Telescope file_browser<CR>]], desc = "Browse" },
+    { '<leader>.', [[<Cmd>Telescope file_browser path=%:p:h select_buffer=true<CR>]], desc = "Browse files" },
+    { '<leader>bb', [[<Cmd>Telescope file_browser<CR>]], desc = "Browse project" },
   },
   event = { 'VeryLazy' },
 }

@@ -90,12 +90,6 @@ function M.config()
             l = {
                 name = "+Plugins"
             },
-            p = {
-                name = "+Projects",
-            },
-            s = {
-                name = "+Search",
-            },
             t = {
                 name = "+Test",
             },

@@ -23,21 +23,25 @@ local function setup_keymaps()
   local keys = require('core.utils').keys
   local builtin = require('telescope.builtin')
 
-  keys.nmap('<leader> ', builtin.find_files, { desc = "Find files" })
-  keys.nmap('<leader>,', builtin.buffers, { desc = "Select buffer" })
-  keys.nmap('<leader>/', builtin.current_buffer_fuzzy_find, { desc = "Search current buffer" })
-  keys.nmap("<leader>'", builtin.live_grep, { desc = "Search everywhere" })
-  keys.nmap('<leader>;', builtin.command_history, { desc = "Search recent commands" })
+  keys.nmap('<leader> ', builtin.find_files, { desc = "Find file" })
+  keys.nmap('<leader>;', builtin.buffers, { desc = "Select buffer" })
+  keys.nmap('<leader>/', builtin.live_grep, { desc = "Search everywhere" })
+  keys.nmap('<leader>:', builtin.command_history, { desc = "Search command history" })
   keys.nmap('<leader>*', builtin.grep_string, { desc = "Find word under cursor" })
 
-  -- +buffers
+  -- +buffer
+  keys.nmap('<leader>bf', builtin.find_files, { desc = "Open from workspace" })
+  keys.nmap('<leader>bo', builtin.git_files, { desc = "Open from project" })
+  keys.nmap('<leader>br', builtin.oldfiles, { desc = "Open recent" })
   keys.nmap('<leader>bs', function() builtin.buffers({ show_all_buffers = true }) end, { desc = "Select" })
-  keys.nmap('<leader>bf', builtin.current_buffer_fuzzy_find, { desc = "Find text" })
 
-  -- +file
-  keys.nmap('<leader>fo', builtin.git_files, { desc = "Open from project" })
-  keys.nmap('<leader>ff', builtin.find_files, { desc = "Find" })
-  keys.nmap('<leader>fr', builtin.oldfiles, { desc = "Recently opened" })
+  -- +Find
+  keys.nmap('<leader>fb', builtin.current_buffer_fuzzy_find, { desc = "Text in current buffer" })
+  keys.nmap('<leader>fc', builtin.command_history, { desc = "Recent command" })
+  keys.nmap('<leader>fm', builtin.marks, { desc = "Mark" })
+  keys.nmap('<leader>fr', builtin.resume, { desc = "Resume last search" })
+  keys.nmap('<leader>ft', builtin.live_grep, { desc = "Text everywhere" })
+  keys.nmap('<leader>fw', builtin.grep_string, { desc = "Word under cursor" })
 
   -- +help
   keys.nmap('<leader>hc', builtin.commands, { desc = "Show available commands" })
@@ -45,16 +49,6 @@ local function setup_keymaps()
   keys.nmap('<leader>ho', builtin.vim_options, { desc = "Show options" })
   keys.nmap('<leader>hh', builtin.help_tags, { desc = "Show help tags" })
   keys.nmap('<leader>hH', builtin.highlights, { desc = "Show highlight groups" })
-
-  -- +search
-  keys.nmap('<leader>sb', builtin.current_buffer_fuzzy_find, { desc = "Current buffer" })
-  keys.nmap('<leader>sc', builtin.command_history, { desc = "Commands history" })
-  keys.nmap('<leader>se', builtin.live_grep, { desc = "Everywhere" })
-  keys.nmap('<leader>sm', builtin.marks, { desc = "Marks" })
-  keys.nmap('<leader>sr', builtin.resume, { desc = "Resume previous search" })
-  keys.nmap('<leader>sw', builtin.grep_string, { desc = "Word under cursor" })
-
-  keys.nmap('<leader>v', builtin.registers, { desc = "Registers" })
 end
 
 function M.config()

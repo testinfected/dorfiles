@@ -10,7 +10,7 @@ local M = {
     { 'ray-x/guihua.lua', build = 'cd lua/fzy && make' }
   },
   keys = {
-    { '<leader>%', [[<Cmd>Sad<CR>]], desc = "Replace word under cursor", mode = { 'n', 'v' } }
+    { '<leader>&', [[<Cmd>Sad<CR>]], desc = "Replace word under cursor", mode = { 'n', 'v' } }
   },
   cmd = { 'Sad' }
 }

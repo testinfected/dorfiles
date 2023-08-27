@@ -10,7 +10,7 @@ local M = {
     'nvim-telescope/telescope.nvim',
   },
   keys = {
-    { '<leader>po', [[<Cmd>Telescope projects<CR>]], desc = "Open recent" },
+    { '<leader>,', [[<Cmd>Telescope projects<CR>]], desc = "Project" },
   },
   event = 'VeryLazy',
 }
