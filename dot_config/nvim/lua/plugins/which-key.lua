@@ -90,6 +90,9 @@ function M.config()
             l = {
                 name = "+Plugins"
             },
+            s = {
+                name = "+Split",
+            },
             t = {
                 name = "+Test",
             },
