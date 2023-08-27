@@ -16,22 +16,9 @@ local M = {
 
 function M.config()
   require('barbecue').setup {
-    create_autocmd = false, -- prevent barbecue from updating itself automatically
     theme = 'catppuccin',
     kinds = require('core.icons').kind
   }
-
-  vim.api.nvim_create_autocmd({
-    'WinResized',
-    'BufWinEnter',
-    'CursorHold',
-    'InsertLeave',
-  }, {
-    group = vim.api.nvim_create_augroup('barbecue.updater', {}),
-    callback = function()
-      require('barbecue.ui').update()
-    end,
-  })
 end
 
 return M
