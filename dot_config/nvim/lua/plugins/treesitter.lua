@@ -18,6 +18,7 @@ local parsers = {
   'typescript',
   'javascript',
   'go',
+  'cue',
   'python',
   'rust',
   'vim'
