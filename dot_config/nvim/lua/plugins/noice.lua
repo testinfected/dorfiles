@@ -17,7 +17,7 @@ function M.config()
   require('noice').setup {
     cmdline = {
       enabled = true, -- enable Noice cmdline UI
-      view = 'cmdline', -- view for rendering the cmdline. Change to `cmdline` to get a classic cmdline at the bottom
+      view = 'cmdline_popup', -- view for rendering the cmdline. Change to `cmdline` to get a classic cmdline at the bottom
     },
     messages = {
       -- NOTE: If you enable messages, then the cmdline is enabled automatically.
