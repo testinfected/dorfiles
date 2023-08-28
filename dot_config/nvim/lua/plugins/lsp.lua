@@ -13,22 +13,26 @@ local M = {
       -- See: https://github.com/onsails/lspkind.nvim
       'onsails/lspkind.nvim',
       'nvim-telescope/telescope.nvim',
-      'smjonas/inc-rename.nvim' -- incremental rename with preview
+      'smjonas/inc-rename.nvim', -- incremental rename with preview
+      'kevinhwang91/nvim-ufo', -- super nice folds
     },
   },
 }
 
 local function setup_keymaps(bufnr)
-  function opts(values)
+  local function opts(values)
     values.buffer = bufnr
     return values
   end
 
   local keys = require('core.utils').keys
   local telescope = require('telescope.builtin')
+  local ufo = require('ufo')
 
   --- Hover
-  keys.nmap('K', vim.lsp.buf.hover, opts { desc = "Quick documentation" })
+  keys.nmap('K', function()
+    if not ufo.peekFoldedLinesUnderCursor() then vim.lsp.buf.hover() end
+  end, opts { desc = "Quick documentation" })
 
   -- Code references
   --d = { vim.lsp.buf.definition, "Definition" },

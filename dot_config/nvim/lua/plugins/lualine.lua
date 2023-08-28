@@ -109,6 +109,8 @@ local function bubble_theme()
 end
 
 function M.config()
+  vim.o.showmode = false -- Don't show mode anymore, lualine takes care of that
+
   require('lualine').setup {
     options = {
       theme = bubble_theme(),

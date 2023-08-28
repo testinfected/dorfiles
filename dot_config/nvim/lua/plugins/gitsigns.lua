@@ -31,7 +31,7 @@ function M.config()
     on_attach = function(bufnr)
       local keys = require('core.utils').keys
       -- Key mappings
-      function opts(values)
+      local function opts(values)
         values.buffer = bufnr
         return values
       end

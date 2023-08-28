@@ -15,70 +15,55 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ','
 vim.keymap.set({ 'n', 'v' }, '<leader>', '<Nop>', { silent = true })
 
--- Vim options
-local function vim_options(opts)
-  for opt, val in pairs(opts) do
-    vim.o[opt] = val
-  end
-end
+-- Tabs {{{
+vim.o.expandtab = true -- Use spaces by default
+vim.o.shiftwidth = 2 -- Set amount of space characters, when we press '<' or '>'
+vim.o.tabstop = 2 -- 1 tab equal 2 spaces
+vim.o.smartindent = true -- Turn on smart indentation. See in the docs for more info
+-- }}}
 
-vim_options {
-  -- Tabs {{{
-  expandtab = true, -- Use spaces by default
-  shiftwidth = 2, -- Set amount of space characters, when we press '<' or '>'
-  tabstop = 2, -- 1 tab equal 2 spaces
-  smartindent = true, -- Turn on smart indentation. See in the docs for more info
-  -- }}}
+-- Useful options {{{
+vim.o.number = true -- Show line numbers
+vim.o.cursorline = true
+vim.o.cursorlineopt = 'number'
+vim.o.mouse = 'a' -- Enable mouse in all modes,
+vim.o.timeout = true
+vim.o.timeoutlen = 200 -- Wait no more that 200ms for key mappings to complete, change according to your typing speed
+-- }}}
 
-  -- Useful options {{{
-  showmode = false, -- Don't show mode anymore, status line takes care of that
-  number = true, -- Show line numbers
-  cursorline = true,
-  cursorlineopt = 'number',
-  mouse = 'a', -- Enable mouse in all modes,
-  timeout = true,
-  timeoutlen = 200, -- Wait no more that 200ms for key mappings to complete, change according to your typing speed
-  -- }}}
+-- Clipboard {{{
+-- Let's use registers explicitly
+-- clipboard = 'unnamed,unnamedplus' -- Use system clipboard
+vim.o.fixeol = false -- Turn off appending new line in the end of a file
+-- }}}
 
-  -- Clipboard {{{
-  -- Let's use registers explicitly
-  -- clipboard = 'unnamed,unnamedplus', -- Use system clipboard
-  fixeol = false, -- Turn off appending new line in the end of a file
-  -- }}}
+-- Search {{{
+vim.o.ignorecase = true -- Ignore case if all characters in lower case
+vim.o.joinspaces = false -- Join multiple spaces in search
+vim.o.incsearch = true
+vim.o.smartcase = true -- When there is a one capital letter search for exact match
+vim.o.showmatch = true -- Highlight search instances
+-- }}}
 
-  -- Folding {{{
-  foldmethod = 'syntax',
-  foldlevel = 99, -- start with all folds opened
-  -- }}}
+-- Sessions {{{
+vim.o.sessionoptions = 'buffers,curdir,globals,tabpages,winpos,winsize' -- Save these in session
+vim.o.backup = false -- Don't create a backup file
+-- }}}
 
-  -- Search {{{
-  ignorecase = true, -- Ignore case if all characters in lower case
-  joinspaces = false, -- Join multiple spaces in search
-  incsearch = true,
-  smartcase = true, -- When there is a one capital letter search for exact match
-  showmatch = true, -- Highlight search instances
-  -- }}}
+-- Term {{{
+-- Adding true color
+vim.o.termguicolors = true
+-- }}}
 
-  -- Sessions {{{
-  sessionoptions = 'buffers,curdir,globals,tabpages,winpos,winsize', -- Save these in session
-  backup = false, -- Don't create a backup file
-  -- }}}
+-- Window {{{
+vim.o.splitbelow = true -- Put new windows below current
+vim.o.splitright = true -- Put new vertical splits to right
+-- }}}
 
-  -- Term {{{
-  -- Adding true color
-  termguicolors = true,
-  -- }}}
-
-  -- Window {{{
-  splitbelow = true, -- Put new windows below current
-  splitright = true, -- Put new vertical splits to right
-  -- }}}
-
-  -- Wild Menu {{{
-  wildmenu = true,
-  wildmode = 'longest:full,full',
-  -- }}}
-}
+-- Wild Menu {{{
+vim.o.wildmenu = true
+vim.o.wildmode = 'longest:full,full'
+-- }}}
 
 vim.g.VM_set_statusline = 0 -- disable VM's statusline updates to prevent clobbering
 vim.g.VM_silent_exit = 1

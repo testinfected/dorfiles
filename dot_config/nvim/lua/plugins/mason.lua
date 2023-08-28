@@ -48,12 +48,16 @@ function M.config()
 
   --Setup every needed language server in lspconfig
   local lspconfig = require('lspconfig')
-  local lsp_capabilities = require('cmp_nvim_lsp').default_capabilities()
+  local capabilities = require('cmp_nvim_lsp').default_capabilities()
+  capabilities.textDocument.foldingRange = {
+    dynamicRegistration = false,
+    lineFoldingOnly = true
+  }
 
   mason_lspconfig.setup_handlers {
     function(server_name)
       lspconfig[server_name].setup {
-        capabilities = lsp_capabilities,
+        capabilities = capabilities,
       }
     end,
   }
