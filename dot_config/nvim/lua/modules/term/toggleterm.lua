@@ -14,6 +14,7 @@ function M.config()
   local toggleterm = require('toggleterm')
   toggleterm.setup {
     open_mapping = [[<leader>\]],
+    insert_mappings = false,
     direction = 'float',
     shade_terminals = true,
     float_opts = {
@@ -22,10 +23,9 @@ function M.config()
   }
 
   -- Keymaps
-  local keys = require('core.utils').keys
   local Terminal = require('toggleterm.terminal').Terminal
   local lazygit = Terminal:new { cmd = 'lazygit', hidden = true }
-  keys.nmap('<leader>gc', function() lazygit:toggle() end, { desc = "Commit" })
+  vim.keymap.set('n', '<leader>gc', function() lazygit:toggle() end, { desc = "Commit" })
 end
 
 return M

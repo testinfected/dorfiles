@@ -10,7 +10,7 @@ local M = {
 }
 
 function M.config()
-  local icons = require('core.icons')
+  local icons = require('config.icons')
 
   require('indent_blankline').setup {
     char = icons.ui.VerticalLine,

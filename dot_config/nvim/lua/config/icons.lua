@@ -1,5 +1,4 @@
 --[[
-  File: icons.lua
   Description: Icon definitions
   See: https://github.com/LunarVim/LunarVim/blob/master/lua/lvim/icons.lua
 ]]

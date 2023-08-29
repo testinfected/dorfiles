@@ -40,11 +40,11 @@ function M.config()
     },
   }
 
-  local keys = require('core.utils').keys
-  keys.nmap('zR', ufo.openAllFolds)
-  keys.nmap('zM', ufo.closeAllFolds)
-  keys.nmap('zr', ufo.openFoldsExceptKinds)
-  keys.nmap('zm', ufo.closeFoldsWith) -- closeAllFolds == closeFoldsWith(0)
+  local map = vim.keymap.set
+  map('n', 'zR', ufo.openAllFolds)
+  map('n', 'zM', ufo.closeAllFolds)
+  map('n', 'zr', ufo.openFoldsExceptKinds)
+  map('n', 'zm', ufo.closeFoldsWith) -- closeAllFolds == closeFoldsWith(0)
 end
 
 return M

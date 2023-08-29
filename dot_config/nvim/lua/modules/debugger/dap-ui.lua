@@ -57,11 +57,10 @@ function M.config()
   }
 
   -- Key mappings
-  local keys = require('core.utils').keys
-  local prefix = '<leader>d'
+  local map, prefix = vim.keymap.set, '<leader>d'
 
-  keys.map({ 'n', 'v' }, prefix .. 'e', dapui.eval, { desc = "Evaluate", })
-  keys.nmap(prefix .. 'o', dapui.toggle, { desc = "Debugger", })
+  map({ 'n', 'v' }, prefix .. 'e', dapui.eval, { desc = "Evaluate", })
+  map('n', prefix .. 'o', dapui.toggle, { desc = "Debugger", })
 end
 
 return M

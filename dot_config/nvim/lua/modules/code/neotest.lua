@@ -56,16 +56,15 @@ function M.config()
   }
 
   -- Keymaps
-  local keys = require('core.utils').keys
-  local prefix = '<leader>t'
-  keys.nmap(prefix .. 'r', function() neotest.run.run() end, { desc = "Run Nearest" })
-  keys.nmap(prefix .. 'd', function() neotest.run.run { strategy = 'dap' } end, { desc = "Debug Nearest" })
-  keys.nmap(prefix .. 't', function() neotest.run.run(vim.fn.expand('%')) end, { desc = "Run File" })
-  keys.nmap(prefix .. 'a', function() neotest.run.run(vim.loop.cwd()) end, { desc = "Run All Test Files" })
-  keys.nmap(prefix .. 's', function() neotest.summary.toggle() end, { desc = "Toggle Summary" })
-  keys.nmap(prefix .. 'o', function() neotest.output.open { enter = true, auto_close = true } end, { desc = "Show Output" })
-  keys.nmap(prefix .. 'O', function() neotest.output_panel.toggle() end, { desc = "Toggle Output Panel" })
-  keys.nmap(prefix .. 'S', function() neotest.run.stop() end, { desc = "Stop" })
+  local map, prefix = vim.keymap.set, '<leader>t'
+  map('n', prefix .. 'r', function() neotest.run.run() end, { desc = "Run Nearest" })
+  map('n', prefix .. 'd', function() neotest.run.run { strategy = 'dap' } end, { desc = "Debug Nearest" })
+  map('n', prefix .. 't', function() neotest.run.run(vim.fn.expand('%')) end, { desc = "Run File" })
+  map('n', prefix .. 'a', function() neotest.run.run(vim.loop.cwd()) end, { desc = "Run All Test Files" })
+  map('n', prefix .. 's', function() neotest.summary.toggle() end, { desc = "Toggle Summary" })
+  map('n', prefix .. 'o', function() neotest.output.open { enter = true, auto_close = true } end, { desc = "Show Output" })
+  map('n', prefix .. 'O', function() neotest.output_panel.toggle() end, { desc = "Toggle Output Panel" })
+  map('n', prefix .. 'S', function() neotest.run.stop() end, { desc = "Stop" })
 end
 
 return M

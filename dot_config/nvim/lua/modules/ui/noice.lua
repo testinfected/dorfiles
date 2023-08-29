@@ -21,14 +21,14 @@ function M.config()
     },
     messages = {
       -- NOTE: If you enable messages, then the cmdline is enabled automatically.
-      enabled = true, -- enable Noice messages UI
+      enabled = false, -- enable Noice messages UI
     },
     popupmenu = {
       enabled = true, -- enable Noice popupmenu UI
       ---@type 'nui'|'cmp'
       backend = 'cmp', -- use cmp as a backend to show cmdline completions
       -- Icons for completion item kinds (see defaults at noice.config.icons.kinds)
-      kind_icons = require('core.icons').kind, -- set to `false` to disable icons
+      kind_icons = require('config.icons').kind, -- set to `false` to disable icons
     },
     notify = {
       -- Turn off noice as `vim.notify`

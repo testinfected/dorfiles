@@ -17,7 +17,6 @@ local function ask(prompt)
 end
 
 function M.config()
-  local keys = require('core.utils').keys
   local dap = require('dap')
   local sign = vim.fn.sign_define
 
@@ -31,13 +30,13 @@ function M.config()
   sign('DapStopped', { text = '→ ', texthl = 'DiagnosticSignWarn', linehl = 'Visual', numhl = 'DiagnosticSignWarn' })
 
   -- Key mappings
-  local prefix = '<leader>d'
-  keys.nmap(prefix .. 'c', dap.continue, { desc = "Continue/Start" })
-  keys.nmap(prefix .. 'd', dap.disconnect, { desc = "Disconnect" })
-  keys.nmap(prefix .. 'bb', dap.toggle_breakpoint, { desc = "Toggle" })
-  keys.nmap(prefix .. 'bc', function() dap.toggle_breakpoint(ask("Condition")) end, { desc = "Toggle conditionally" })
-  keys.nmap(prefix .. 'bh', function() dap.toggle_breakpoint(nil, ask("Hit number")) end, { desc = "Hit number" })
-  keys.nmap(prefix .. 'bl', function() dap.toggle_breakpoint(nil, nil, ask("Message")) end, { desc = "Log" })
+  local map, prefix = vim.keymap.set, '<leader>d'
+  map('n', prefix .. 'c', dap.continue, { desc = "Continue/Start" })
+  map('n', prefix .. 'd', dap.disconnect, { desc = "Disconnect" })
+  map('n', prefix .. 'bb', dap.toggle_breakpoint, { desc = "Toggle" })
+  map('n', prefix .. 'bc', function() dap.toggle_breakpoint(ask("Condition")) end, { desc = "Toggle conditionally" })
+  map('n', prefix .. 'bh', function() dap.toggle_breakpoint(nil, ask("Hit number")) end, { desc = "Hit number" })
+  map('n', prefix .. 'bl', function() dap.toggle_breakpoint(nil, nil, ask("Message")) end, { desc = "Log" })
 end
 
 return M

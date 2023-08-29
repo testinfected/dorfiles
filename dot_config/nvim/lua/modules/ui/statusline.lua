@@ -27,7 +27,7 @@ local conditions = {
   end,
 }
 
-local icons = require('core.icons')
+local icons = require('config.icons')
 
 local diff = {
   'diff',

@@ -25,7 +25,7 @@ function M.config()
   local cmp = require('cmp')
   local lspkind = require('lspkind')
   local luasnip = require('luasnip')
-  local icons = require('core.icons')
+  local icons = require('config.icons')
 
   cmp.setup {
     -- Make the first item in completion menu always be selected.

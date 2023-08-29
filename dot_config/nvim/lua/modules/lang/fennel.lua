@@ -1,5 +1,4 @@
 --[[
-  File: hotpot.lua
   Description: The fennel compiler
   See: https://github.com/rktjmp/hotpot.nvim
 ]]

@@ -11,13 +11,13 @@ local M = {
     'SmiteshP/nvim-navic',
     'nvim-tree/nvim-web-devicons',
   },
-  event = 'Bufenter'
+  event = 'BufEnter'
 }
 
 function M.config()
   require('barbecue').setup {
     theme = 'catppuccin',
-    kinds = require('core.icons').kind
+    kinds = require('config.icons').kind
   }
 end
 
