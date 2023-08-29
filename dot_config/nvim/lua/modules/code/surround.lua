@@ -1,6 +1,6 @@
 --[[
   File: surround.lua
-  Description: All about 'surroundings': parentheses, brackets, quotes, XML tags, and more
+  Description: Add/change/delete surrounding delimiter pairs with ease
   See: https://github.com/kylechui/nvim-surround
 ]]
 
