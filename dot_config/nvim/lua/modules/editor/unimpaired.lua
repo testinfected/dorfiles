@@ -1,10 +1,11 @@
 --[[
   File: unimpaired.lua
   Description: Pairs of handy bracket mappings
-  See: https://github.com/tpope/vim-unimpaired
+  See: https://github.com/tummetott/unimpaired.nvim
 ]]
 
 return {
-  'tpope/vim-unimpaired',
-  event = 'VeryLazy'
+  'tummetott/unimpaired.nvim',
+  event = 'VeryLazy',
+  config = true
 }
