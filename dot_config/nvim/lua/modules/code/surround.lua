@@ -1,10 +1,11 @@
 --[[
   File: surround.lua
   Description: All about 'surroundings': parentheses, brackets, quotes, XML tags, and more
-  See: https://github.com/tpope/vim-surround
+  See: https://github.com/kylechui/nvim-surround
 ]]
 
 return {
-  'tpope/vim-surround',
-  event = 'InsertEnter'
+  'kylechui/nvim-surround',
+  event = 'InsertEnter',
+  config = true
 }
