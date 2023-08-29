@@ -27,14 +27,13 @@ local function configure(dashboard)
   dashboard.section.header.opts.hl = 'AlphaHeader'
 
   dashboard.section.buttons.val = {
-    dashboard.button('g', "    Last session", [[<Cmd>SessionLoadLast<CR>]]),
+    dashboard.button('j', "    Last session", [[<Cmd>SessionLoadLast<CR>]]),
     dashboard.button('o', "    Open session", [[<Cmd>Telescope persisted<CR>]]),
-    dashboard.button('p', "󱚉    Recent projects", [[<Cmd>Telescope projects<CR>]]),
     dashboard.button('r', "󱋢    Recent files", [[<Cmd>Telescope oldfiles<CR>]]),
-    dashboard.button('n', "    New file", [[<Cmd>ene <BAR> startinsert<CR>]]),
     dashboard.button('f', "󰮗    Find file", [[<Cmd>Telescope file_browser<CR>]]),
-    dashboard.button('l', "󰒲    Lazy", [[<Cmd>Lazy<CR>]]),
-    dashboard.button('m', "    Mason", [[<Cmd>Mason<CR>]]),
+    dashboard.button('n', "    New file", [[<Cmd>ene <BAR> startinsert<CR>]]),
+    dashboard.button('p', "󰒲    Plugins", [[<Cmd>Lazy<CR>]]),
+    dashboard.button('l', "    Languages", [[<Cmd>Mason<CR>]]),
     dashboard.button('b', "󰄉    Profile", [[<Cmd>Lazy profile<CR>]]),
     dashboard.button('q', "󰿅    Quit", [[<Cmd>qa<CR>]]),
   }
