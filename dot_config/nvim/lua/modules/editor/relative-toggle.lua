@@ -6,5 +6,6 @@
 
 return {
   'cpea2506/relative-toggle.nvim',
-  event = { 'BufEnter' }
+  event = { 'BufEnter' },
+  config = true
 }
