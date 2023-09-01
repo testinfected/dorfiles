@@ -28,16 +28,7 @@ function M.config()
   require('go').setup {
     icons = false, -- We have already setup dap icons so don't want them overridden here
     lsp_cfg = false, -- Use mason, then apply gopls config after setup
-    lsp_keymaps = function(bufnr)
-      local map, prefix = vim.keymap.set, '<leader>c'
-      local opts = function(values)
-        values.buffer = bufnr
-        return values
-      end
-      -- +Code
-      map('n', prefix .. 'a', require('go.codeaction').run_code_action, opts { desc = "Go Code action" })
-      map('v', prefix .. 'a', require('go.codeaction').run_range_code_action, opts { desc = "Go Code action" })
-    end,
+    lsp_keymaps = false,
     lsp_diag_virtual_text = false, -- Set up as part of diagnostics
     dap_debug_keymap = false, -- I have set this up already with all my other nvim-dap setup
     textobjects = false, -- Already have textobjects set up so do not add a mapping for this

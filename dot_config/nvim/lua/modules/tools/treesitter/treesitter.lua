@@ -14,13 +14,15 @@ local M = {
 }
 
 local parsers = {
-  'lua',
-  'typescript',
-  'javascript',
-  'go',
   'cue',
+  'go',
+  'javascript',
+  'lua',
+  'markdown',
+  'markdown_inline',
   'python',
   'rust',
+  'typescript',
   'vim'
 }
 

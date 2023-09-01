@@ -17,7 +17,7 @@ function M.config()
   require('noice').setup {
     cmdline = {
       enabled = true, -- enable Noice cmdline UI
-      view = 'cmdline_popup', -- view for rendering the cmdline. Change to `cmdline` to get a classic cmdline at the bottom
+      view = 'cmdline', -- view for rendering the cmdline. Change to `cmdline_popup` to get a cmdline popup at the center
     },
     messages = {
       -- NOTE: If you enable messages, then the cmdline is enabled automatically.
@@ -47,7 +47,7 @@ function M.config()
             },
         },
         hover = {
-            enabled = true,
+            enabled = false,
         },
         signature = {
             enabled = true,
@@ -63,7 +63,7 @@ function M.config()
       bottom_search = true, -- turn on to use a classic bottom cmdline for search
       command_palette = false, -- turn on to position the cmdline and popupmenu together
       long_message_to_split = true, -- turn on to send long messages to a split
-      inc_rename = true, -- turn on to enable an input dialog for inc-rename.nvim
+      inc_rename = false, -- turn on to enable an input dialog for inc-rename.nvim
       lsp_doc_border = 'rounded', -- add a border to hover docs and signature help
     },
   }

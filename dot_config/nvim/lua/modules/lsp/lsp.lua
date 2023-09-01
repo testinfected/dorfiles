@@ -13,8 +13,7 @@ local M = {
       -- See: https://github.com/onsails/lspkind.nvim
       'onsails/lspkind.nvim',
       'nvim-telescope/telescope.nvim',
-      'smjonas/inc-rename.nvim', -- incremental rename with preview
-      'kevinhwang91/nvim-ufo', -- super nice folds
+      'nvimdev/lspsaga.nvim', -- incremental rename with preview
     },
   },
 }
@@ -26,51 +25,43 @@ local function setup_keymaps(bufnr)
   end
 
   local telescope = require('telescope.builtin')
-  local ufo = require('ufo')
-
   local map, prefix = vim.keymap.set, '<leader>c'
 
   --- Hover
-  map('n', 'K', function()
-    if not ufo.peekFoldedLinesUnderCursor() then vim.lsp.buf.hover() end
-  end, opts { desc = "Quick documentation" })
-
+  map('n', 'K', [[<cmd]Lspsaga hover_doc<cr>]], opts { desc = "Quick documentation" })
   -- Code references
-  --d = { vim.lsp.buf.definition, "Definition" },
-  map('n', 'gd', telescope.lsp_definitions, opts { desc = "Definition" })
-  --D = { vim.lsp.buf.type_definition, "Type definition" },
-  map('n', 'gD', telescope.lsp_type_definitions, opts { desc = "Type definition" })
-  --i = { vim.lsp.buf.implementation, "Implementation" },
-  map('n', 'gI', telescope.lsp_implementations, opts { desc = "Implementation" })
-  --r = { vim.lsp.buf.references, "References" },
-  map('n', 'gr', telescope.lsp_references, opts { desc = "References" })
+  map('n', 'gd', [[<<Cmd>Lspsaga goto_definition<CR>]], opts { desc = "Definition" })
+  map('n', 'gD', [[<<Cmd>Lspsaga peek_definition<CR>]], opts { desc = "Peek definition" })
+  map('n', 'gr', [[<<Cmd>Lspsaga finder<CR>]], opts { desc = "References" })
+  map('n', 'gt', [[<<Cmd>Lspsaga goto_type_definition<CR>]], opts { desc = "Type definition" })
+  map('n', 'gT', [[<<Cmd>Lspsaga peek_type_definition<CR>]], opts { desc = "Peek type definition" })
+  map('n', 'gI', [[<<Cmd>Lspsaga incoming_calls<CR>]], opts { desc = "Incoming calls" })
+  map('n', 'gO', [[<<Cmd>Lspsaga outgoing_calls<CR>]], opts { desc = "Incoming calls" })
+
   map('n', 'gs', vim.lsp.buf.signature_help, opts { desc = "Signature" })
 
-  -- Diagnostics
-  map('n', ']d', function() vim.diagnostic.goto_next { severity = nil } end, opts { desc = "Next diagnostic" })
-  map('n', '[d', function() vim.diagnostic.goto_prev { severity = nil } end, opts { desc = "Previous diagnostic" })
-  map('n', ']E', function() vim.diagnostic.goto_next { severity = 'ERROR' } end, opts { desc = "Next error" })
-  map('n', '[E', function() vim.diagnostic.goto_prev { severity = 'ERROR' } end, opts { desc = "Previous error" })
-  map('n', ']w', function() vim.diagnostic.goto_next { severity = 'WARN' } end, opts { desc = "Next warning" })
-  map('n', '[w', function() vim.diagnostic.goto_prev { severity = 'WARN' } end, opts { desc = "Previous warning" })
+  -- Navigate diagnostics
+  map('n', ']d', [[<<Cmd>Lspsaga diagnostic_jump_next<CR>]], opts { desc = "Next diagnostic" })
+  map('n', '[d', [[<<Cmd>Lspsaga diagnostic_jump_prev<CR>]], opts { desc = "Previous diagnostic" })
 
   -- Code actions
-  map('n', prefix .. 'a', vim.lsp.buf.code_action, opts { desc = "Code action" })
+  map('n', prefix .. 'a', [[<cmd>Lspsaga code_action<cr>]], opts { desc = "Code action" })
   map('n', prefix .. 'f', function() vim.lsp.buf.format { async = true } end, opts { desc = "Format document" })
   map('n', prefix .. 'l', vim.lsp.codelens.run, opts { desc = "CodeLens Action" })
   map('n', prefix .. 'q', telescope.quickfix, opts { desc = "Quickfix" })
-  --map('n', prefix .. 'r', vim.lsp.buf.rename, opts { desc = "Rename..." })
-  map('n', prefix .. 'r', ":IncRename ", opts { desc = "Rename...", silent = true })
+  map('n', prefix .. 'r', [[<<cmd>Lspsaga rename ++project<cr>]], opts { desc = "Rename..." })
   map('n', prefix .. 's', telescope.lsp_document_symbols, opts { desc = "Document symbols" })
   map('n', prefix .. 'S', telescope.lsp_dynamic_workspace_symbols, opts { desc = "Workspace Symbols" })
-  map('n', prefix .. 'dl', function() vim.diagnostic.open_float(nil, { scope = 'buffer', border = 'rounded' }) end, opts { desc = "Line diagnostics" })
-  map('n', prefix .. 'df', function() telescope.diagnostics { bufnr = 0 } end, opts { desc = "File diagnostics" })
-  map('n', prefix .. 'dw', telescope.diagnostics, opts { desc = "Workspace diagnostics" })
+
+  -- Diagnostic
+  map('n', prefix .. 'dc', [[<<cmd>Lspsaga show_cursor_diagnostics<cr>]], opts { desc = "Cursor diagnostics" })
+  map('n', prefix .. 'dl', [[<<cmd>Lspsaga show_line_diagnostics<cr>]], opts { desc = "Line diagnostics" })
+  map('n', prefix .. 'df', [[<<cmd>Lspsaga show_buf_diagnostics<cr>]], opts { desc = "File diagnostics" })
+  map('n', prefix .. 'dw', [[<<cmd>Lspsaga show_workspace_diagnostics<cr>]], opts { desc = "Workspace diagnostics" })
 
   -- Visual mode range actions
-  map('v', prefix .. 'a', vim.lsp.buf.code_action, opts { desc = "Act on selection" })
+  map('v', prefix .. 'a', [[<cmd>Lspsaga code_action<cr>]], opts { desc = "Act on selection" })
   map('v', prefix .. 'f', vim.lsp.buf.format, opts { desc = "Format selection" })
-  map('v', prefix .. 'z', function() require('go.codeaction').run_range_code_action() end, opts { desc = "Code action" })
 end
 
 function M.config()
