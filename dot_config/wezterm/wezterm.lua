@@ -18,7 +18,7 @@ config.font = wezterm.font 'MesloLGS Nerd Font'
 config.font_size = 13.0
 
 -- For example, changing the color scheme:
-config.color_scheme = "Catppuccin Mocha" -- or Macchiato, Frappe, Latte
+config.color_scheme = "Catppuccin Macchiato" -- or Macchiato, Frappe, Latte
 
 config.window_decorations = "RESIZE"
 

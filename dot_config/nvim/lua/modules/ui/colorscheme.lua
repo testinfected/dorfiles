@@ -17,7 +17,7 @@ function M.config()
   local catppuccin = require('catppuccin')
 
   catppuccin.setup {
-    flavor = 'mocha',
+    flavor = 'macchiato',
     transparent_background = true,
     term_colors = true,
     dim_inactive = {
