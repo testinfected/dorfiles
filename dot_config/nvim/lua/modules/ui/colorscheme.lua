@@ -75,6 +75,7 @@ function M.config()
       neotree = true,
       noice = true,
       notifier = true,
+      rainbow_delimiters = true,
       telescope = {
         enabled = true,
       },
