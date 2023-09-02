@@ -1,7 +1,6 @@
 --[[
-  File: treesitter.lua
   Description: Configuration of tree-sitter in Neovim
-  See: https://github.com/tree-sitter/tree-sitter
+  See: https://github.com/nvim-treesitter/nvim-treesitter
 ]]
 
 local M = {
