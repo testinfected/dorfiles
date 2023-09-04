@@ -41,22 +41,9 @@ function M.config()
     },
     color_overrides = {},
     custom_highlights = {},
-    highlight_overrides = {
-      mocha = function(mocha)
-        return {
-          -- missing bg highlight for notify
-          NotifyBackground = { bg = mocha.mantle },
-        }
-      end,
-    },
     integrations = {
       alpha = true,
-      barbecue = {
-        dim_dirname = true, -- directory name is dimmed by default
-        bold_basename = true,
-        dim_context = false,
-        alt_background = false,
-      },
+      beacon = true,
       cmp = true,
       dap = {
         enabled = true,

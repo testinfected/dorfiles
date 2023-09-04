@@ -1,9 +1,9 @@
 --[[
-  Description: Configuration of tree-sitter in Neovim
+  Description: Flash cursor when it jumps some distance or moves between windows
   See: https://github.com/DanilaMihailov/beacon.nvim
 ]]
 
-
-local M = {
-
+return {
+  'danilamihailov/beacon.nvim',
+  event = 'BufEnter'
 }
