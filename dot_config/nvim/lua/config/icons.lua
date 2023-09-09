@@ -39,18 +39,19 @@ return {
   },
 
   git = {
-    LineAdded = '',
-    LineModified = '',
-    LineRemoved = '',
-    FileDeleted = '',
+    LineAdded = '',
+    LineModified = '',
+    LineRemoved = '',
+    FileDeleted = '✖',
     FileIgnored = '◌',
-    FileRenamed = '',
-    FileStaged = 'S',
+    FileRenamed = '➜',
+    FileStaged = '✓',
     FileUnmerged = '',
     FileUnstaged = '',
-    FileUntracked = 'U',
+    FileUntracked = '',
+    FileConflict = "",
     Diff = '',
-    Repo = '',
+    Repo = '󰊢',
     Octoface = '',
     Branch = '',
   },
@@ -60,17 +61,24 @@ return {
     Lambda = '󰘧',
     Lua = '',
     Latex = '',
-    Test = '',
+    Test = '󰙨',
   },
 
   file = {
-    ReadOnly = '',
-    New = '',
-    Modified = '',
+    ReadOnly = '',
+    New = '',
+    Modified = '',
     Path = '',
   },
 
+  folder = {
+    Open = '',
+    Closed = '',
+    Empty = ''
+  },
+
   diagnostics = {
+    Diagnostic = "󰒡",
     Debug = '',
     Error = '',
     Warning = '',
@@ -86,5 +94,6 @@ return {
     VerticalLineThick = '┃',
     VerticalDottedLine = '',
     VerticalDottedLineThick = '󰇙',
-  },
+  }
 }
+
