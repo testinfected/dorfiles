@@ -12,10 +12,22 @@ for _, arrow_key in ipairs({ '<Up>', '<Down>', '<Left>', '<Right>' }) do
   map('n', arrow_key, '<Nop>')
 end
 
+-- Better navigation in insert mode
+map('i', '<C-b>', '<ESC>^i', { desc = "Go to beginning of line" })
+map('i', '<C-e>', '<End>', { desc = "Go to end of line" })
+map('i', '<C-h>', '<Left>', { desc = "Move left" })
+map('i', '<C-l>', '<Right>', { desc = "Move right" })
+map('i', '<C-j>', '<Down>', { desc = "Move down" })
+map('i', '<C-k>', '<Up>', { desc = "Move up" })
+
+-- Save using CTRL-S
+map('n', '<C-s>', '<Cmd>w<CR>', { desc = "Save file" })
+
 --The & command repeats the last substitution (synonym for :s).
 -- Unfortunately, it disregards flags, so make & trigger the :&& command which preserves flags
 map({'n', 'x'}, '&', '<Cmd>&&<CR>', { desc = "Repeat last substitution" })
 
+-- Splits
 map('n', '<leader>sv', '<C-w>v', { desc = "Vertically" })
 map('n', '<leader>sh', '<C-w>s', { desc = "Horizontally" })
 map('n', '<leader>ss', '<C-w>w', { desc = "Switch" })
