@@ -23,7 +23,6 @@ vim.o.smartindent = true -- Turn on smart indentation. See in the docs for more 
 
 -- Useful options {{{
 vim.o.number = true -- Show line numbers
-vim.o.cmdheight = 0 -- Don't need an extra command line
 vim.o.cursorline = true
 vim.o.cursorlineopt = 'number'
 vim.o.mouse = 'a' -- Enable mouse in all modes,
