@@ -50,43 +50,49 @@ function M.config()
         enable_ui = true, -- enable nvim-dap-ui
       },
       gitsigns = true,
-      illuminate = true,
+      illuminate = {
+        enabled = true,
+        lsp = true
+      },
       indent_blankline = {
         enabled = true,
         colored_indent_levels = true,
       },
       lsp_saga = true,
       lsp_trouble = true,
+      markdown = true,
       mason = true,
+      native_lsp = {
+        enabled = true,
+        virtual_text = {
+          errors = { 'italic' },
+          hints = { 'italic' },
+          warnings = { 'italic' },
+          information = { 'italic' },
+        },
+        underlines = {
+          errors = { 'underline' },
+          hints = { 'underline' },
+          warnings = { 'underline' },
+          information = { 'underline' },
+        },
+        inlay_hints = {
+          background = true,
+        },
+      },
       neotest = true,
       neotree = true,
       noice = true,
       notifier = true,
+      overseer = true,
       rainbow_delimiters = true,
       telescope = {
         enabled = true,
       },
       treesitter = true,
       treesitter_context = true,
+      ufo = true,
       which_key = true,
-    },
-    native_lsp = {
-      enabled = true,
-      virtual_text = {
-        errors = { 'italic' },
-        hints = { 'italic' },
-        warnings = { 'italic' },
-        information = { 'italic' },
-      },
-      underlines = {
-        errors = { 'underline' },
-        hints = { 'underline' },
-        warnings = { 'underline' },
-        information = { 'underline' },
-      },
-      inlay_hints = {
-        background = true,
-      },
     },
   }
 

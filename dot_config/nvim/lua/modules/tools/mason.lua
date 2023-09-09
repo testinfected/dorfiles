@@ -31,7 +31,7 @@ local servers = {
   'html', -- LSP for HTML
   'marksman', -- LSP for Markdown
   -- 'ruby_ls',                -- LSP for Ruby
-  -- 'rust_analyzer',          -- LSP for Rust
+  'rust_analyzer',          -- LSP for Rust
   'sqlls', -- LSP for SQL
   'taplo', -- LSP for TOML
   'lemminx', -- LSP for XML
@@ -39,7 +39,11 @@ local servers = {
 }
 
 function M.config()
-  require('mason').setup()
+  require('mason').setup {
+    ui = {
+      border = 'rounded'
+    }
+  }
 
   local mason_lspconfig = require('mason-lspconfig')
   mason_lspconfig.setup {
