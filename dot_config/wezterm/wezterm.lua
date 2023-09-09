@@ -14,8 +14,9 @@ end
 config.term = "wezterm"
 
 -- This is where you actually apply your config choices
-config.font = wezterm.font 'MesloLGS Nerd Font'
-config.font_size = 13.0
+-- config.font = wezterm.font 'MesloLGS Nerd Font'
+config.font = wezterm.font 'JetBrainsMono Nerd Font Mono'
+config.font_size = 14.0
 
 -- For example, changing the color scheme:
 config.color_scheme = "Catppuccin Macchiato" -- or Macchiato, Frappe, Latte
