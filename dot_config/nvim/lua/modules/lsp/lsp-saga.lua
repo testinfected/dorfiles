@@ -18,7 +18,8 @@ function M.config()
       extend_gitsigns = true, -- extend gitsigns plugin diff action
     },
     lightbulb = {
-      virtual_text = false, -- hide bulb at end of line
+      virtual_text = true, -- show bulb at end of line
+      sign = false
     },
     outline = {
       win_width = 50,
