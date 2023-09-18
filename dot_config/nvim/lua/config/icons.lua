@@ -80,10 +80,10 @@ return {
   diagnostics = {
     Diagnostic = "󰒡",
     Debug = '',
-    Error = '',
-    Warning = '',
-    Info = '',
-    Hint = '',
+    Error = '',
+    Warning = '',
+    Info = '',
+    Hint = '',
     Trace = '󰙈',
   },
 
