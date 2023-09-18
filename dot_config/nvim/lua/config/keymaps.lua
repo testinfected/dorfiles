@@ -5,6 +5,7 @@
 local map = vim.keymap.set
 
 map('n', 'x', '"_x') -- don't put cut characters in register
+map('n', 'r', '"_r') -- don't put cut characters in register
 map({ 'i', 'n' }, '<ESC>', [[<Cmd>noh<CR><ESC>]], { desc = "Escape and clear search highlighting" })
 
 -- Break the habit of using arrow keys in normal mode. Not for the faint of heart!
@@ -21,7 +22,7 @@ map('i', '<C-j>', '<Down>', { desc = "Move down" })
 map('i', '<C-k>', '<Up>', { desc = "Move up" })
 
 -- Save using CTRL-S
-map('n', '<C-s>', '<Cmd>w<CR>', { desc = "Save file" })
+map({'n', 'i'}, '<C-s>', '<Cmd>w<CR><ESC>', { desc = "Save file", silent = true })
 
 --The & command repeats the last substitution (synonym for :s).
 -- Unfortunately, it disregards flags, so make & trigger the :&& command which preserves flags
