@@ -16,8 +16,8 @@ vim.keymap.set({ 'n', 'v' }, '<leader>', '<Nop>', { silent = true })
 
 -- Tabs {{{
 vim.o.expandtab = true -- Use spaces by default
-vim.o.shiftwidth = 2 -- Set amount of space characters, when we press '<' or '>'
-vim.o.tabstop = 2 -- 1 tab equal 2 spaces
+vim.o.shiftwidth = 4 -- Set amount of space characters, when we press '<' or '>'
+vim.o.tabstop = 4 -- 1 tab equal 2 spaces
 vim.o.smartindent = true -- Turn on smart indentation. See in the docs for more info
 -- }}}
 
