@@ -28,12 +28,9 @@ function M.config()
   local icons = require('config.icons')
 
   cmp.setup {
-    -- Make the first item in completion menu always be selected.
-    preselect = 'item',
-
     completion = {
       -- Disable the completion menu, you must invoke it with <c-space>
-      autocomplete = false,
+      -- autocomplete = false,
       completeopt = 'menu,menuone,longest,preview,noinsert,noselect'
     },
 
@@ -52,7 +49,9 @@ function M.config()
       -- Jump to the next placeholder in the snippet.
       ['<C-f>'] = cmp.mapping(function(fallback) if luasnip.jumpable(1) then luasnip.jump(1) else fallback() end end),
       -- go to previous placeholder in the snippet
-      ['<C-b>'] = cmp.mapping(function(fallback) if luasnip.jumpable(-1) then luasnip.jump(-1) else fallback() end end)
+      ['<C-b>'] = cmp.mapping(function(fallback) if luasnip.jumpable(-1) then luasnip.jump(-1) else fallback() end end),
+      ['<C-e>'] = cmp.mapping.abort(),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }),
     },
 
     sources = cmp.config.sources({
@@ -95,7 +94,7 @@ function M.config()
     },
 
     experimental = {
-      --ghost_text = true,
+      ghost_text = true,
     },
   }
 
