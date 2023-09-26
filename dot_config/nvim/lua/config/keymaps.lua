@@ -21,7 +21,7 @@ map('i', '<C-l>', '<Right>', { desc = "Move right" })
 map('i', '<C-j>', '<Down>', { desc = "Move down" })
 map('i', '<C-k>', '<Up>', { desc = "Move up" })
 
--- Save using CTRL-S
+-- Save using CTRL-S and exit insert mode 
 map({'n', 'i'}, '<C-s>', '<Cmd>w<CR><ESC>', { desc = "Save file", silent = true })
 
 --The & command repeats the last substitution (synonym for :s).
