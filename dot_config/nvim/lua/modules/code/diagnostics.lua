@@ -52,7 +52,7 @@ function M.config()
   local map, prefix = vim.keymap.set, '<leader>x'
   map('n', prefix .. 'x', trouble.open, { desc = "Open" })
   map('n', prefix .. 'w', function() trouble.open('workspace_diagnostics') end, { desc = "Workspace diagnostics" })
-  map('n', prefix .. 'd', function() trouble.open('document_diagnostic') end, { desc = "Document diagnostics" })
+  map('n', prefix .. 'd', function() trouble.open('document_diagnostics') end, { desc = "Document diagnostics" })
   map('n', prefix .. 'q', function() trouble.open('quickfix') end, { desc = "Quickfix" })
   map('n', prefix .. 'l', function() trouble.open('loclist') end, { desc = "Locations" })
   map('n', prefix .. 'r', function() trouble.open('lsp_references') end, { desc = "References" })
