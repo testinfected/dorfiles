@@ -9,13 +9,11 @@ map('n', 'r', '"_r') -- don't put cut characters in register
 map({ 'i', 'n' }, '<ESC>', [[<Cmd>noh<CR><ESC>]], { desc = "Escape and clear search highlighting" })
 
 -- Break the habit of using arrow keys in normal mode. Not for the faint of heart!
-for _, arrow_key in ipairs({ '<Up>', '<Down>', '<Left>', '<Right>' }) do
-  map('n', arrow_key, '<Nop>')
-end
+--for _, arrow_key in ipairs({ '<Up>', '<Down>', '<Left>', '<Right>' }) do
+--  map('n', arrow_key, '<Nop>')
+--end
 
 -- Better navigation in insert mode
-map('i', '<C-b>', '<ESC>^i', { desc = "Go to beginning of line" })
-map('i', '<C-e>', '<End>', { desc = "Go to end of line" })
 map('i', '<C-h>', '<Left>', { desc = "Move left" })
 map('i', '<C-l>', '<Right>', { desc = "Move right" })
 map('i', '<C-j>', '<Down>', { desc = "Move down" })
