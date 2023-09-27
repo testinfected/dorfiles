@@ -7,6 +7,7 @@
 local M = {
   'VidocqH/lsp-lens.nvim',
   event = 'BufEnter',
+  enabled = false,
 }
 
 function M.config()
