@@ -15,6 +15,7 @@ function M.config()
   toggleterm.setup {
     open_mapping = [[<leader>\]],
     insert_mappings = false,
+    start_in_insert = true,
     direction = 'float',
     shade_terminals = true,
     float_opts = {
