@@ -19,7 +19,10 @@ map('i', '<C-l>', '<Right>', { desc = "Move right" })
 map('i', '<C-j>', '<Down>', { desc = "Move down" })
 map('i', '<C-k>', '<Up>', { desc = "Move up" })
 
--- Save using CTRL-S and exit insert mode 
+-- Close buffer using <leader>q
+map({'n', 't'}, '<leader>q', [[<Cmd>q<CR>]], { desc = "Close buffer" })
+
+-- Save using CTRL-s and exit insert mode 
 map({'n', 'i'}, '<C-s>', '<Cmd>w<CR><ESC>', { desc = "Save file", silent = true })
 
 --The & command repeats the last substitution (synonym for :s).
@@ -28,9 +31,11 @@ map({'n', 'x'}, '&', '<Cmd>&&<CR>', { desc = "Repeat last substitution" })
 
 -- Splits
 map('n', '<leader>sv', '<C-w>v', { desc = "Vertically" })
+map('n', '<leader>s|', '<C-w>v', { desc = "Vertically" })
 map('n', '<leader>sh', '<C-w>s', { desc = "Horizontally" })
+map('n', '<leader>s-', '<C-w>s', { desc = "Horizontally" })
 map('n', '<leader>ss', '<C-w>w', { desc = "Switch" })
-map('n', '<leader>sx', '<C-w>q', { desc = "Close" })
-map('n', '<leader>se', '<C-w>=', { desc = "Equal width" })
+map('n', '<leader>sc', '<C-w>q', { desc = "Close" })
+map('n', '<leader>s=', '<C-w>=', { desc = "Equal width" })
 
 -- vim:tabstop=2 shiftwidth=2 expandtab syntax=lua foldmethod=marker foldlevelstart=0 foldlevel=0
