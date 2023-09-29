@@ -64,6 +64,11 @@ vim.o.wildmenu = true
 vim.o.wildmode = 'longest:full,full'
 -- }}}
 
+-- Cmdline {{{
+vim.o.cmdwinheight = 10
+vim.o.ruler = false
+-- }}}
+
 vim.g.VM_set_statusline = 0 -- disable VM's statusline updates to prevent clobbering
 vim.g.VM_silent_exit = 1
 
