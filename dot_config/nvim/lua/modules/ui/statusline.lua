@@ -141,7 +141,7 @@ function M.config()
         diff
       },
       lualine_c = { },
-      lualine_x = { },
+      lualine_x = { 'overseer' },
       lualine_y = { 'filetype', lsp, diagnostics, 'progress' },
       lualine_z = {
         { 'location', separator = { right = icons.ui.RightPill }, left_padding = 2 },

@@ -28,9 +28,6 @@ function M.config()
     }
 
     wk.register {
-        ['='] = {
-            name = "+Unimpaired"
-        },
         ['['] = {
             name = "+Navigate (backward)"
         },
@@ -87,8 +84,8 @@ function M.config()
                 s = { function() vim.cmd [[WhichKey]] end, "Show", },
                 l = { function() local input = vim.fn.input "WhichKey: " vim.cmd([[WhichKey ]] .. input) end, "Lookup..." }
             },
-            l = {
-                name = "+Plugins"
+            r = {
+                name = "+Run",
             },
             s = {
                 name = "+Split",
