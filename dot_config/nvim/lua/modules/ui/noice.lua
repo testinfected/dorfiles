@@ -66,6 +66,14 @@ function M.config()
       inc_rename = false, -- turn on to enable an input dialog for inc-rename.nvim
       lsp_doc_border = 'rounded', -- add a border to hover docs and signature help
     },
+    views = {
+        mini = {
+            position = {
+                row = -2,
+                col = "100%",
+            }
+        },
+    },
   }
 
   require('telescope').load_extension('noice')
