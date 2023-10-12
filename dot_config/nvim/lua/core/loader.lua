@@ -87,7 +87,7 @@ local Lazy = {
 }
 
 -- Might as well set up an easy-access keybinding
-vim.keymap.set('n', '<leader>l', [[<Cmd>Lazy<CR>]], { desc = "Plugin Manager" })
+vim.keymap.set('n', '<leader>p', [[<Cmd>Lazy<CR>]], { desc = "Plugin Manager" })
 
 return Lazy
 
