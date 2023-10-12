@@ -1,2 +1,2 @@
 # Load starship theme
-starship init fish | source
+status --is-interactive; and starship init fish | source
