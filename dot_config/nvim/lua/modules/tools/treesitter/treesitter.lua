@@ -13,6 +13,7 @@ local M = {
 }
 
 local parsers = {
+  'clojure',
   'cue',
   'go',
   'javascript',
@@ -20,6 +21,7 @@ local parsers = {
   'markdown',
   'markdown_inline',
   'python',
+  'ruby',
   'rust',
   'typescript',
   'vim'

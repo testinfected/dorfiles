@@ -17,24 +17,25 @@ local M = {
 }
 
 local servers = {
-  'lua_ls', -- LSP for Lua language
-  'tsserver', -- LSP for Typescript and Javascript
-  'emmet_ls', -- LSP for Emmet (Vue, HTML, CSS)
-  'cssls', -- LSP for CSS
-  'pyright', -- LSP for Python
-  'gopls', -- LSP for Go
-  'bashls', -- LSP for Bash
   'dagger', -- LSP for CUE
+  'bashls', -- LSP for Bash
+  'clojure_lsp', -- LSP for Clojure
+  'cssls', -- LSP for CSS
   'dockerls', -- LSP for Docker (exl. Docker Compose)
+  'emmet_ls', -- LSP for Emmet (Vue, HTML, CSS)
   --'fennel_language_server', -- LSP for Fennel
+  'gopls', -- LSP for Go
   'gradle_ls', -- LSP for Gradle
   'html', -- LSP for HTML
+  'lua_ls', -- LSP for Lua language
   'marksman', -- LSP for Markdown
+  'pyright', -- LSP for Python
   -- 'ruby_ls',                -- LSP for Ruby
   'rust_analyzer',          -- LSP for Rust
   'sqlls', -- LSP for SQL
   'taplo', -- LSP for TOML
   'lemminx', -- LSP for XML
+  'tsserver', -- LSP for Typescript and Javascript
   'yamlls', -- LSP for YAML
 }
 
