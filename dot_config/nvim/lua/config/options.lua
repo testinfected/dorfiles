@@ -14,6 +14,16 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ','
 vim.keymap.set({ 'n', 'v' }, '<leader>', '<Nop>', { silent = true })
 
+-- Buffers {{{
+vim.o.autoread = true -- reload file if changed outside nvim
+vim.o.autowrite = true
+-- }}},
+
+-- Buffers {{{
+vim.o.autoread = true -- reload file if changed outside nvim
+vim.o.autowrite = true -- autowrite file
+---}}},
+
 -- Tabs {{{
 vim.o.expandtab = true -- Use spaces by default
 vim.o.shiftwidth = 4 -- Set amount of space characters, when we press '<' or '>'
